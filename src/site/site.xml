@@ -29,7 +29,7 @@
             -->
             <item name="About" href="index.html"/>
             <item name="The Vision" href="doc/vision.pdf"/>
-            <item name="User Stories" href="user_stories.html"/>
+            <item name="User Stories" href="doc/user_stories.pdf"/>
             <item name="Domain Model" href="domain_model.html"/>
             <item name="Context View" href="context_view.html"/>
             <!--
