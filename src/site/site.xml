@@ -38,7 +38,7 @@
             <item name="System Architecture Document" href="system_architecture_document.html" />
             <item name="Other Specs" href="other_specs.html" />
             -->
-            <item name="Glossary" href="glossary.html"/>
+            <item name="Glossary" href="doc/Glossar.pdf"/>
         </menu>
         <menu name="Project Evaluation">
             <item name="Sprint Plan" href="eval/sprints.html"/>
