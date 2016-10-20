@@ -29,8 +29,8 @@
             -->
             <item name="About" href="index.html"/>
             <item name="The Vision" href="doc/vision.pdf"/>
-            <item name="User Stories" href="doc/user_stories.pdf"/>
-            <item name="Domain Model" href="domain_model.html"/>
+            <item name="User Stories" href="doc/userstories.pdf"/>
+            <item name="Domain Model" href="doc/DomainDoc.pdf"/>
             <item name="Context View" href="context_view.html"/>
             <!--
             <item name="System Sequence Diagram" href="system_sequence_diagram.html" />
