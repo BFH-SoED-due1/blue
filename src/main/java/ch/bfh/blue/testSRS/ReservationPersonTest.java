@@ -16,10 +16,10 @@ public class ReservationPersonTest {
 
 	@Test
 	public void testPersonHasReservation() {
-		Person p1 = new Mieter("Renter1", "Musterstrasse", new Date());
+		Person m1 = new Mieter("Renter1", "Musterstrasse", new Date());
 		Reservation r1 = new Reservation(new Date(), new Time(5), false);
-		p1.addReservation(r1);
-		assertNotNull(p1.getReservation());
+		m1.addReservation(r1);
+		assertNotNull(m1.getReservation());
 	}
 	
 	@Test
