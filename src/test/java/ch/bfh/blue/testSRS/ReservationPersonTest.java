@@ -1,5 +1,7 @@
 package ch.bfh.blue.testSRS;
 
+import static org.junit.Assert.assertNotNull;
+
 import java.sql.Time;
 import java.util.Date;
 
@@ -14,11 +16,10 @@ public class ReservationPersonTest {
 
 	@Test
 	public void testPersonHasReservation() {
-		Person m1 = new Mieter("Renter1", "Musterstrasse", new Date());
+		Mieter m1 = new Mieter("Renter1", "Musterstrasse", new Date());
 		Reservation r1 = new Reservation(new Date(), new Time(5), false);
 		m1.addReservation(r1);
-		// TODO Implement class Reservation such that following assertion holds:
-		// assertNotNull(m1.getReservation());
+		assertNotNull(m1.getReservations());
 	}
 
 	@Test
