@@ -1,3 +1,6 @@
+/*
+INFOS
+*/
 package ch.bfh.blue.testSRS;
 
 import static org.junit.Assert.assertNotNull;
