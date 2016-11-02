@@ -11,6 +11,4 @@ public class Space {
 	public boolean isBooked() {	
 		return this.booked;
 	}
-	
-	
 }
