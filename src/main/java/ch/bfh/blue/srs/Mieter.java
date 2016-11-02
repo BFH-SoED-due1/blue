@@ -13,7 +13,7 @@ public class Mieter extends Person {
 		super(name, addresse, birthday);
 		// TODO Auto-generated constructor stub
 	}
-	
+	// get the set of reservations 
 	public Set<Reservation> getReservations (){
 		return reservations;
 	}
