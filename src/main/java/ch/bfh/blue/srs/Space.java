@@ -7,7 +7,7 @@ public class Space {
 	public Space(String name){
 		this.name=name;
 	}
-
+	// returns if room is booked
 	public boolean isBooked() {	
 		return this.booked;
 	}
