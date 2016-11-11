@@ -27,17 +27,15 @@ public class ReservationPersonTest {
 		Person m1 = new Mieter("Renter1", "Musterstrasse", new Date());
 		Reservation r1 = new Reservation(new Date(), new Time(5), false);
 		r1.setRenter((Mieter) m1);
-		// TODO Implement class Reservation such that following assertion holds:
-		// assertNotNull(r1.getRenter());
+		assertNotNull(r1.getRenter());
 	}
 
 	@Test
 	public void testReservationHasParticipants(){
-		Person t1 = new Teilnehmer("Teilnehmer1", "Musterstrasse", new Date());
+		Teilnehmer t1 = new Teilnehmer("Teilnehmer1", "Musterstrasse", new Date());
 		Reservation r1 = new Reservation(new Date(), new Time(5), false);
 		r1.addParticipants(t1);
-		// TODO Implement class Reservation such that following assertion holds:
-		// assertNotNull(r1.getParticipants());
+		assertNotNull(r1.getParticipants());
 	}
 
 }

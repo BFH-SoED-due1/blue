@@ -14,4 +14,12 @@ public abstract class Person {
 		this.birthday=birthday;
 	}
 	
+	public void register(){
+		
+	}
+	
+	public void login(){
+		
+	}
+	
 }
