@@ -5,7 +5,6 @@
  *
  * Distributable under GPL license. See terms of license at gnu.org.
  */
-
 package ch.bfh.blue.srs;
 
 public class Space {
