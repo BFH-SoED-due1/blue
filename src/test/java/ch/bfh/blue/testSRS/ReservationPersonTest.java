@@ -19,12 +19,13 @@ import ch.bfh.blue.srs.Mieter;
 import ch.bfh.blue.srs.Person;
 import ch.bfh.blue.srs.Reservation;
 import ch.bfh.blue.srs.Teilnehmer;
+import ch.bfh.blue.srs.UserData;
 
 public class ReservationPersonTest {
 
 	@Test
 	public void testPersonHasReservation() {
-		Mieter m1 = new Mieter("Renter1", "Musterstrasse", new Date());
+		Mieter m1 = new Mieter(new UserData("max.muster@musterprovider.ch", "Max", "123"));
 		Reservation r1 = new Reservation(new Date(), new Time(5), false);
 		m1.addReservation(r1);
 		assertNotNull(m1.getReservations());
@@ -32,7 +33,7 @@ public class ReservationPersonTest {
 
 	@Test
 	public void testReservationHasRenter(){
-		Person m1 = new Mieter("Renter1", "Musterstrasse", new Date());
+		Person m1 = new Mieter(new UserData("max.muster@musterprovider.ch", "Max", "123"));
 		Reservation r1 = new Reservation(new Date(), new Time(5), false);
 		r1.setRenter((Mieter) m1);
 		assertNotNull(r1.getRenter());
@@ -40,7 +41,7 @@ public class ReservationPersonTest {
 
 	@Test
 	public void testReservationHasParticipants(){
-		Teilnehmer t1 = new Teilnehmer("Teilnehmer1", "Musterstrasse", new Date());
+		Teilnehmer t1 = new Teilnehmer(new UserData("max.muster@musterprovider.ch", "Max", "123"));
 		Reservation r1 = new Reservation(new Date(), new Time(5), false);
 		r1.addParticipants(t1);
 		assertNotNull(r1.getParticipants());
