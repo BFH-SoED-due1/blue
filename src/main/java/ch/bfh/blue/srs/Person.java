@@ -7,24 +7,21 @@
  */
 package ch.bfh.blue.srs;
 
-import java.util.Date;
+
 
 public abstract class Person {
-	private String name, addresse;
-	private Date birthday;
+	private UserData data;
 
-	public Person(String name, String addresse, Date birthday){
-		this.name =name;
-		this.addresse=addresse;
-		this.birthday=birthday;
+	public Person(UserData data){
+		this.data = data;
 	}
 
-	public void register(){
-		//TODO
+	public boolean login(String userName,String password){
+		return Registration.authentication(userName, password,this);
 	}
 
-	public void login(){
-		//TODO
+	public UserData getData() {
+		return this.data;
 	}
 
 }
