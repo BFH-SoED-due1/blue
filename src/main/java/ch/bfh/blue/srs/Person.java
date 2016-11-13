@@ -1,28 +1,27 @@
+/*
+ * Copyright (c) 2016 Berner Fachhochschule, Switzerland.
+ *
+ * Project Smart Reservation System.
+ *
+ * Distributable under GPL license. See terms of license at gnu.org.
+ */
 package ch.bfh.blue.srs;
 
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+
 
 public abstract class Person {
-	private List<Reservation> reservations = new LinkedList<>();
-	private String name, addresse;
-	private Date birthday;
-	
-	public Person(String name, String addresse, Date birthday){
-		this.name =name;
-		this.addresse=addresse;
-		this.birthday=birthday;
-	}
-	
+	private UserData data;
 
-	public void addReservation(Reservation r) {
-		// TODO Auto-generated method stub
-		
+	public Person(UserData data){
+		this.data = data;
 	}
 
-	public Object getReservation() {
-		// TODO Auto-generated method stub
-		return null;
+	public boolean login(String userName,String password){
+		return Registration.authentication(userName, password,this);
 	}
+
+	public UserData getData() {
+		return this.data;
+	}
+
 }
