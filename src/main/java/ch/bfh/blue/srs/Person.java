@@ -7,17 +7,11 @@
  */
 package ch.bfh.blue.srs;
 
-
-
 public abstract class Person {
 	private UserData data;
 
-	public Person(UserData data){
+	public Person(UserData data) {
 		this.data = data;
-	}
-
-	public boolean login(String userName,String password){
-		return Registration.authentication(userName, password,this);
 	}
 
 	public UserData getData() {

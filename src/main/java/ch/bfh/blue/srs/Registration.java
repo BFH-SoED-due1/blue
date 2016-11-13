@@ -12,32 +12,35 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Registration {
-	private static Map<String,Person> registeredUsers = new HashMap<>();
+	private Map<String, Person> registeredUsers = new HashMap<>();
 
-	public static void register(UserData data, boolean isRenter){
-		if (isRenter){
-			registeredUsers.put(data.getUserName(),new Mieter(data));
-		}
-		else{
-			registeredUsers.put(data.getUserName(),new Teilnehmer(data));
+	public void register(UserData data, boolean isRenter) {
+		if (isRenter) {
+			registeredUsers.put(data.getUserName(), new Mieter(data));
+		} else {
+			registeredUsers.put(data.getUserName(), new Teilnehmer(data));
 		}
 	}
 
-	public static boolean authentication(String user,String pw,Person p){
-		if(registeredUsers.containsKey(user)){
+	public boolean login(String userName, String password, Person p) {
+		return authentication(userName, password, p);
+	}
+
+	public boolean authentication(String user, String pw, Person p) {
+		if (registeredUsers.containsKey(user)) {
 			UserData userData = registeredUsers.get(user).getData();
-			if(pw == userData.getPw() && registeredUsers.get(user).equals(p)){
+			if (pw == userData.getPw() && registeredUsers.get(user).equals(p)) {
 				return true;
 			}
 		}
 		return false;
 	}
 
-	public static Person getPerson(String user){
+	public Person getPerson(String user) {
 		return registeredUsers.get(user);
 	}
 
-	public static  Map<String,Person> getRegisteredUsers(){
+	public Map<String, Person> getRegisteredUsers() {
 		return Collections.unmodifiableMap(registeredUsers);
 	}
 

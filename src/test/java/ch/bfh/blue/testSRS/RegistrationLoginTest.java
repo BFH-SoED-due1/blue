@@ -13,38 +13,44 @@ import ch.bfh.blue.srs.UserData;
 
 public class RegistrationLoginTest {
 
+
 	@Test
 	public void testRegistration() {
-		Registration.register(new UserData("max.muster@provider.ch", "max", "123"), true);
-		assertNotNull(Registration.getRegisteredUsers());
+		Registration r = new Registration();
+		r.register(new UserData("max.muster@provider.ch", "max", "123"), true);
+		assertNotNull(r.getRegisteredUsers());
 	}
 
 	@Test
 	public void testLoginMieter() {
-		Registration.register(new UserData("max.muster@provider.ch", "max", "123"), true);
-		Mieter m = (Mieter) Registration.getPerson("max");
-		assertTrue(m.login("max", "123"));
+		Registration r = new Registration();
+		r.register(new UserData("max.muster@provider.ch", "max", "123"), true);
+		Mieter m = (Mieter) r.getPerson("max");
+		assertTrue(r.login("max", "123",m));
 	}
 
 	@Test
 	public void testLoginTeilnehmer() {
-		Registration.register(new UserData("max.muster@provider.ch", "max", "123"), false);
-		Teilnehmer t = (Teilnehmer) Registration.getPerson("max");
-		assertTrue(t.login("max", "123"));
+		Registration r = new Registration();
+		r.register(new UserData("max.muster@provider.ch", "max", "123"), false);
+		Teilnehmer t = (Teilnehmer) r.getPerson("max");
+		assertTrue(r.login("max", "123",t));
 	}
 
 	@Test
 	public void testWrongPassword() {
-		Registration.register(new UserData("max.muster@provider.ch", "max", "123"), false);
-		Teilnehmer t = (Teilnehmer) Registration.getPerson("max");
-		assertFalse(t.login("max", "234"));
+		Registration r = new Registration();
+		r.register(new UserData("max.muster@provider.ch", "max", "123"), false);
+		Teilnehmer t = (Teilnehmer) r.getPerson("max");
+		assertFalse(r.login("max", "234",t));
 	}
 
 	@Test
 	public void testWrongUserName() {
-		Registration.register(new UserData("max.muster@provider.ch", "max", "123"), false);
-		Teilnehmer t = (Teilnehmer) Registration.getPerson("max");
-		assertFalse(t.login("moriz", "123"));
+		Registration r = new Registration();
+		r.register(new UserData("max.muster@provider.ch", "max", "123"), false);
+		Teilnehmer t = (Teilnehmer) r.getPerson("max");
+		assertFalse(r.login("moriz", "123",t));
 	}
 
 
