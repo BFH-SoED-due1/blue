@@ -29,5 +29,13 @@ public class Mieter extends Person {
 
 	}
 
+	public void addParticipants(Reservation r,Teilnehmer t1){
+		r.addParticipants(t1);
+	}
+
+	public Set<Teilnehmer> getParticipants(Reservation r1) {
+		return r1.getParticipants();
+	}
+
 
 }
