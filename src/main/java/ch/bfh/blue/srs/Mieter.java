@@ -11,6 +11,8 @@ package ch.bfh.blue.srs;
 import java.util.HashSet;
 import java.util.Set;
 
+import ch.bfh.blue.requirements.Person;
+
 public class Mieter extends Person {
 
 	private Set<Reservation> reservations = new HashSet<>();

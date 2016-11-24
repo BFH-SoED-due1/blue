@@ -14,8 +14,8 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import ch.bfh.blue.requirements.Person;
 import ch.bfh.blue.srs.Mieter;
-import ch.bfh.blue.srs.Person;
 import ch.bfh.blue.srs.Reservation;
 import ch.bfh.blue.srs.Teilnehmer;
 import ch.bfh.blue.srs.UserData;

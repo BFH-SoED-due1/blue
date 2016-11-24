@@ -11,6 +11,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import ch.bfh.blue.requirements.Person;
+
 public class Registration {
 	private Map<String, Person> registeredUsers = new HashMap<>();
 

@@ -7,6 +7,8 @@
  */
 package ch.bfh.blue.srs;
 
+import ch.bfh.blue.requirements.Person;
+
 public class Teilnehmer extends Person {
 
 	public Teilnehmer(UserData data) {

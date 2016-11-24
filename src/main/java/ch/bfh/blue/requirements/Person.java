@@ -5,7 +5,9 @@
  *
  * Distributable under GPL license. See terms of license at gnu.org.
  */
-package ch.bfh.blue.srs;
+package ch.bfh.blue.requirements;
+
+import ch.bfh.blue.srs.UserData;
 
 public abstract class Person {
 	private UserData data;
