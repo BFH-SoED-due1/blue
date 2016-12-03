@@ -5,9 +5,14 @@
  *
  * Distributable under GPL license. See terms of license at gnu.org.
  */
-package ch.bfh.blue.srs;
+package ch.bfh.blue.jpa;
 
+import javax.persistence.Embeddable;
+
+
+@Embeddable
 public class UserData {
+
 	private String email;
 	private String userName;
 	private String pw;
