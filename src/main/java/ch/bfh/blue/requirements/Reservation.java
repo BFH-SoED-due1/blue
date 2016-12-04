@@ -5,14 +5,16 @@
  *
  * Distributable under GPL license. See terms of license at gnu.org.
  */
-package ch.bfh.blue.srs;
+package ch.bfh.blue.requirements;
 
-import ch.bfh.blue.requirements.Person;
+public interface Reservation {
 
-public class Teilnehmer extends Person {
+	public void setSpace(Space s1);
 
-	public Teilnehmer(UserData data) {
-		super(data);
-	}
+	public Space getSpace();
+
+	public void setOwner(Person p);
+
+	public Person getOwner();
 
 }

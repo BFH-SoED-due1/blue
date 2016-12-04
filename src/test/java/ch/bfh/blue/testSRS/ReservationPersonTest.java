@@ -9,23 +9,20 @@ package ch.bfh.blue.testSRS;
 
 import static org.junit.Assert.assertNotNull;
 
-import java.sql.Time;
-import java.util.Date;
-
 import org.junit.Test;
 
+import ch.bfh.blue.jpa.Mieter;
+import ch.bfh.blue.jpa.ReservationImpl;
+import ch.bfh.blue.jpa.SpaceImpl;
+import ch.bfh.blue.jpa.UserData;
 import ch.bfh.blue.requirements.Person;
-import ch.bfh.blue.srs.Mieter;
-import ch.bfh.blue.srs.Reservation;
-import ch.bfh.blue.srs.Teilnehmer;
-import ch.bfh.blue.srs.UserData;
-
+import ch.bfh.blue.requirements.Reservation;
 public class ReservationPersonTest {
 
 	@Test
 	public void testPersonHasReservation() {
 		Mieter m1 = new Mieter(new UserData("max.muster@musterprovider.ch", "Max", "123"));
-		Reservation r1 = new Reservation(new Date(), new Time(5), false);
+		Reservation r1 = new ReservationImpl(m1,null,null, new SpaceImpl("s1",1));
 		m1.addReservation(r1);
 		assertNotNull(m1.getReservations());
 	}
@@ -33,27 +30,9 @@ public class ReservationPersonTest {
 	@Test
 	public void testReservationHasRenter(){
 		Person m1 = new Mieter(new UserData("max.muster@musterprovider.ch", "Max", "123"));
-		Reservation r1 = new Reservation(new Date(), new Time(5), false);
-		r1.setRenter((Mieter) m1);
-		assertNotNull(r1.getRenter());
-	}
-
-	@Test
-	public void testReservationHasParticipants(){
-		Teilnehmer t1 = new Teilnehmer(new UserData("max.muster@musterprovider.ch", "Max", "123"));
-		Reservation r1 = new Reservation(new Date(), new Time(5), false);
-		Mieter m = new Mieter(new UserData("moritz.muster@provider.ch", "moriz", "456"));
-		m.addParticipants(r1, t1);
-		assertNotNull(r1.getParticipants());
-	}
-
-	@Test
-	public void testMieterHasParticipants(){
-		Teilnehmer t1 = new Teilnehmer(new UserData("max.muster@musterprovider.ch", "Max", "123"));
-		Reservation r1 = new Reservation(new Date(), new Time(5), false);
-		Mieter m = new Mieter(new UserData("moritz.muster@provider.ch", "moriz", "456"));
-		m.addParticipants(r1, t1);
-		assertNotNull(m.getParticipants(r1));
+		Reservation r1 = new ReservationImpl(m1,null,null, new SpaceImpl("s1",1));
+		r1.setOwner(m1);
+		assertNotNull(r1.getOwner());
 	}
 
 }

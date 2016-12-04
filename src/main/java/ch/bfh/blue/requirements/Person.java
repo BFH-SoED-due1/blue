@@ -7,17 +7,16 @@
  */
 package ch.bfh.blue.requirements;
 
-import ch.bfh.blue.srs.UserData;
+import java.util.Set;
 
-public abstract class Person {
-	private UserData data;
+public interface Person {
 
-	public Person(UserData data) {
-		this.data = data;
-	}
+	public abstract void addReservation(Reservation r);
 
-	public UserData getData() {
-		return this.data;
-	}
+	public abstract void removeReservation(Reservation r);
+
+	public abstract Set<Reservation> getReservations();
+
+	public abstract void setReservation(Set<Reservation> reservations);
 
 }
