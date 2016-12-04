@@ -64,7 +64,6 @@ public class MyUI extends UI {
 
 		Button reservationBtn = new Button("Make Reservation");
 		reservationBtn.addClickListener(e -> {
-			evProv.getEvents(startDate.getValue(), endDate.getValue());
 			
 			layout.addComponent(new Label(
 					"Thanks " + startDate.getValue() + ", it works!" + endDate.getValue()
@@ -80,7 +79,9 @@ public class MyUI extends UI {
 		layout.setMargin(true);
 		layout.setSpacing(true);
 
-		setContent(layout);
+		
+		
+		setContent(new LoginWindow().createLogin());
 	}
 
 	// testkommentar
