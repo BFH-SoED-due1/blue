@@ -8,23 +8,37 @@
 package ch.bfh.blue.requirements;
 
 import java.sql.Timestamp;
+import java.util.List;
 
-import ch.bfh.blue.jpa.UserData;
+public abstract class AbstractPersistencManager {
 
-public abstract class AbstractPersistencManager  {
+	private static AbstractPersistencManager instance;
+
+	private static String sClass = "ch.bfh.blue.service.PersistenceManger";
 
 	public abstract Person makePerson(UserData data);
 
-	public abstract Space makeSpace(String name,int spaceNumber);
+	public abstract Space makeSpace(String name, int spaceNumber);
 
-	public abstract Reservation makeReservation(Person p,Timestamp stStamp,Timestamp enStamp,Space space);
+	public abstract Reservation makeReservation(Person p, Timestamp stStamp, Timestamp enStamp, Space space);
 
+	public abstract List<Person> getPerson();
 
+	public abstract void close();
 
+	public static AbstractPersistencManager getInstance() throws InstantiationException, IllegalAccessException {
+		if (instance == null) {
+			try {
+				instance = (AbstractPersistencManager) Class.forName(sClass).newInstance();
+			} catch (ClassNotFoundException e) {
+				System.err.println("Could not load class: " + sClass);
+				throw new RuntimeException("Could not load class: " + sClass);
+			}
 
+		}
 
+		return instance;
+	}
 
-
-
-
+	public abstract Person makeLoginQuery(String string, String string2);
 }
