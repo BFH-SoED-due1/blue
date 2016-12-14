@@ -15,6 +15,7 @@ public class PersistenceTest {
 	AbstractPersistencManager pm = AbstractPersistencManager.getInstance();
 	pm.makePerson(new UserDataImpl("max@muster", "max", "123"));
 	assertNotNull(pm.getPerson());
+	AbstractPersistencManager.cleanInstance();
 	pm.close();
 	}
 
@@ -24,6 +25,7 @@ public class PersistenceTest {
 	pm.makePerson(new UserDataImpl("max@muster", "max", "123"));
 	Person p = pm.makeLoginQuery("max", "123");
 	assertNotNull(p);
+	AbstractPersistencManager.cleanInstance();
 	pm.close();
 	}
 

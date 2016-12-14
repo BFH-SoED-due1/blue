@@ -14,7 +14,7 @@ public abstract class AbstractPersistencManager {
 
 	private static AbstractPersistencManager instance;
 
-	private static String sClass = "ch.bfh.blue.service.PersistenceManger";
+	private static String sClass = "ch.bfh.blue.jpa.PersistenceManger";
 
 	public abstract Person makePerson(UserData data);
 
@@ -25,6 +25,8 @@ public abstract class AbstractPersistencManager {
 	public abstract List<Person> getPerson();
 
 	public abstract void close();
+
+	public abstract Person makeLoginQuery(String string, String string2);
 
 	public static AbstractPersistencManager getInstance() throws InstantiationException, IllegalAccessException {
 		if (instance == null) {
@@ -40,5 +42,9 @@ public abstract class AbstractPersistencManager {
 		return instance;
 	}
 
-	public abstract Person makeLoginQuery(String string, String string2);
+	public static void cleanInstance(){
+		instance = null;
+	}
+
+
 }
