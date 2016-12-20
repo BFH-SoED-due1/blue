@@ -25,8 +25,6 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.components.calendar.CalendarComponentEvents.DateClickEvent;
-import com.vaadin.ui.components.calendar.event.CalendarEvent;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser
@@ -57,7 +55,7 @@ public class MyUI extends UI {
 		endDate.setResolution(Resolution.MINUTE);
 		GregorianCalendar gregCal = new GregorianCalendar();
 		gregCal.setTime(new Date());
-		gregCal.add(GregorianCalendar.HOUR, 1);
+		gregCal.add(java.util.Calendar.HOUR, 1);
 		endDate.setValue(gregCal.getTime()); // Set the date and time to present + 1h
 
 		MyEventProvider evProv = new MyEventProvider();

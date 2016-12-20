@@ -3,7 +3,6 @@ package ch.bfh.blue.UI;
 import java.util.Date;
 
 import com.vaadin.ui.components.calendar.event.CalendarEvent;
-import com.vaadin.ui.components.calendar.event.CalendarEvent.EventChangeListener;
 import com.vaadin.ui.components.calendar.event.CalendarEvent.EventChangeNotifier;
 
 public class BasicEvent

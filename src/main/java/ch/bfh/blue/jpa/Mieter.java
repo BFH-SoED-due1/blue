@@ -14,29 +14,53 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import ch.bfh.blue.requirements.Person;
 import ch.bfh.blue.requirements.Reservation;
 
 @Entity
+@NamedQuery(name="Mieter.findAll", query="SELECT m FROM Mieter m")
 public class Mieter implements Person {
 
 	@Id @GeneratedValue
 	private int id;
 
 	@Embedded
-	private UserData data;
+	private UserDataImpl data;
 
-	@OneToMany
+	@OneToMany(targetEntity=ReservationImpl.class)
 	private Set<Reservation> reservations = new HashSet<>();
 
-	public Mieter(UserData data) {
-		this.data=data;
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public void setData(UserDataImpl data) {
+		this.data = data;
+	}
+
+	public void setReservations(Set<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
+
+
+	public Mieter() {
+
+	}
+
+	public Mieter(UserDataImpl data2) {
+		this.data= data2;
 	}
 
 	// get the set of reservations
-	public UserData getData() {
+	public UserDataImpl getData() {
 		return this.data;
 	}
 

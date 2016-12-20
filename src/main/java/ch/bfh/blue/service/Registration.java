@@ -12,12 +12,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ch.bfh.blue.jpa.Mieter;
-import ch.bfh.blue.jpa.UserData;
+import ch.bfh.blue.jpa.UserDataImpl;
 
 public class Registration {
 	private Map<String, Mieter> registeredUsers = new HashMap<>();
 
-	public void register(UserData data) {
+	public void register(UserDataImpl data) {
 		registeredUsers.put(data.getUserName(), new Mieter(data));
 	}
 
@@ -27,7 +27,7 @@ public class Registration {
 
 	public boolean authentication(String user, String pw, Mieter m) {
 		if (registeredUsers.containsKey(user)) {
-			UserData userData = registeredUsers.get(user).getData();
+			UserDataImpl userData = registeredUsers.get(user).getData();
 			if (pw == userData.getPw() && registeredUsers.get(user).equals(m)) {
 				return true;
 			}
