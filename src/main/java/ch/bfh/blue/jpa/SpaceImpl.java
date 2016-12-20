@@ -13,37 +13,34 @@ import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import ch.bfh.blue.requirements.Reservation;
 import ch.bfh.blue.requirements.Space;
 
 @Entity
+@NamedQuery(name="SpaceImpl.findAll", query="SELECT s FROM SpaceImpl s")
 public class SpaceImpl implements Space{
 
 	@Id
 	private int spaceNumber;
 	private String name;
-	private boolean booked = false;
 
-	@OneToMany
-	private Set<Reservation> reservations = new HashSet<>();
+
+	@OneToMany(targetEntity=ReservationImpl.class)
+	private Set<Reservation> reservations= new HashSet<>();
+
+	public SpaceImpl() {
+
+	}
 
 	public SpaceImpl(String name,int spaceNumber){
 		this.name=name;
 		this.spaceNumber = spaceNumber;
 	}
 
-	// returns if room is booked
-	@Override
-	public boolean isBooked() {
-		return this.booked;
-	}
 
-	@Override
-	public void booking() {
-		this.booked = true;
-	}
 
 	@Override
 	public String getName() {
@@ -68,4 +65,22 @@ public class SpaceImpl implements Space{
 		}
 
 	}
+
+	public int getSpaceNumber() {
+		return spaceNumber;
+	}
+
+	public void setSpaceNumber(int spaceNumber) {
+		this.spaceNumber = spaceNumber;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public void setReservations(Set<Reservation> reservations) {
+		this.reservations = reservations;
+	}
+
 }

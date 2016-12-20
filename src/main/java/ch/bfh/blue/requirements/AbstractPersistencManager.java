@@ -22,11 +22,15 @@ public abstract class AbstractPersistencManager {
 
 	public abstract Reservation makeReservation(Person p, Timestamp stStamp, Timestamp enStamp, Space space);
 
-	public abstract List<Person> getPerson();
+	public abstract List<Space> getAllSpaces();
+
+	public abstract List<Person> getAllPersons();
 
 	public abstract void close();
 
 	public abstract Person makeLoginQuery(String string, String string2);
+
+	public abstract List<Space> getFreeSpaces(Timestamp stStamp,Timestamp endStamp);
 
 	public static AbstractPersistencManager getInstance() throws InstantiationException, IllegalAccessException {
 		if (instance == null) {
