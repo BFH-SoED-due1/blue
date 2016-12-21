@@ -21,11 +21,15 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Calendar;
 import com.vaadin.ui.DateField;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.HorizontalSplitPanel;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.components.calendar.CalendarComponentEvents.DateClickEvent;
+import com.vaadin.ui.components.calendar.event.BasicEvent;
+import com.vaadin.ui.components.calendar.event.BasicEventProvider;
 import com.vaadin.ui.components.calendar.event.CalendarEvent;
 
 /**
@@ -40,6 +44,15 @@ import com.vaadin.ui.components.calendar.event.CalendarEvent;
 @SuppressWarnings("serial")
 @Theme("mytheme")
 public class MyUI extends UI {
+	
+	public CalendarEvent createEvent(Date start, Date end, String title, String description){
+		BasicEvent event = new BasicEvent(description, title, start, end);
+		return event;
+	}
+	
+	
+	ViewProvider viewProvider = new ViewProvider(this);
+	
 
 	@Override
 	protected void init(VaadinRequest vaadinRequest) {
@@ -49,39 +62,16 @@ public class MyUI extends UI {
 		final TextField name = new TextField();
 		name.setCaption("Type your name here:");
 
-		DateField startDate = new DateField("Start of Reservation");
-		startDate.setResolution(Resolution.MINUTE);
-		startDate.setValue(new Date()); // Set the date and time to present
-
-		DateField endDate = new DateField("End of Reservation");
-		endDate.setResolution(Resolution.MINUTE);
-		GregorianCalendar gregCal = new GregorianCalendar();
-		gregCal.setTime(new Date());
-		gregCal.add(GregorianCalendar.HOUR, 1);
-		endDate.setValue(gregCal.getTime()); // Set the date and time to present + 1h
-
-		MyEventProvider evProv = new MyEventProvider();
-
-		Button reservationBtn = new Button("Make Reservation");
-		reservationBtn.addClickListener(e -> {
-			
-			layout.addComponent(new Label(
-					"Thanks " + startDate.getValue() + ", it works!" + endDate.getValue()
-					));
-						
-		});
-
-		Calendar cal = new Calendar(evProv);
-
-		datePickerLayout.addComponents(startDate, endDate);
-		datePickerLayout.setSpacing(true);
-		layout.addComponents(name, datePickerLayout, reservationBtn, cal);
-		layout.setMargin(true);
-		layout.setSpacing(true);
+		
+		HorizontalSplitPanel hsplit = new HorizontalSplitPanel();
 
 		
+		hsplit.setFirstComponent(viewProvider.createLoginView());
+		hsplit.setSecondComponent(viewProvider.createRegistrationView());
+		hsplit.setWidth("500");
+		hsplit.setLocked(true);
 		
-		setContent(new LoginWindow().createLogin());
+		setContent(viewProvider.createReservationView());
 	}
 
 	// testkommentar
