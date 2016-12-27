@@ -18,9 +18,5 @@ public interface Space {
 
 	public void removeReservation(Reservation res);
 
-	public void booking();
-
-	boolean isBooked();
-
 
 }

@@ -9,15 +9,21 @@ package ch.bfh.blue.jpa;
 
 import javax.persistence.Embeddable;
 
+import ch.bfh.blue.requirements.UserData;
+
 
 @Embeddable
-public class UserData {
+public class UserDataImpl implements UserData {
 
 	private String email;
 	private String userName;
 	private String pw;
 
-	public UserData(String email,String userName, String password){
+	public UserDataImpl() {
+
+	}
+
+	public UserDataImpl(String email,String userName, String password){
 		this.email=email;
 		this.userName=userName;
 		this.pw=password;
@@ -30,5 +36,22 @@ public class UserData {
 	public String getPw() {
 		return pw;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public void setPw(String pw) {
+		this.pw = pw;
+	}
+
 
 }
