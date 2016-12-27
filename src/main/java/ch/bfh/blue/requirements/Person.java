@@ -7,7 +7,7 @@
  */
 package ch.bfh.blue.requirements;
 
-import java.util.Set;
+import java.util.List;
 
 public interface Person {
 
@@ -15,8 +15,8 @@ public interface Person {
 
 	public abstract void removeReservation(Reservation r);
 
-	public abstract Set<Reservation> getReservations();
+	public abstract List<Reservation> getReservations();
 
-	public abstract void setReservation(Set<Reservation> reservations);
+	public abstract void setReservation(List<Reservation> reservations);
 
 }
