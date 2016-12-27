@@ -7,8 +7,8 @@
  */
 package ch.bfh.blue.jpa;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -31,7 +31,7 @@ public class Mieter implements Person {
 	private UserDataImpl data;
 
 	@OneToMany(targetEntity=ReservationImpl.class)
-	private Set<Reservation> reservations = new HashSet<>();
+	private List<Reservation> personReservations = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -45,8 +45,9 @@ public class Mieter implements Person {
 		this.data = data;
 	}
 
-	public void setReservations(Set<Reservation> reservations) {
-		this.reservations = reservations;
+	@Override
+	public void setReservation(List<Reservation> reservations) {
+		this.personReservations = reservations;
 	}
 
 
@@ -65,27 +66,24 @@ public class Mieter implements Person {
 	}
 
 	@Override
-	public Set<Reservation> getReservations() {
-		return reservations;
+	public List<Reservation> getReservations() {
+		return personReservations;
 	}
 
 
 	@Override
 	public void addReservation(Reservation r) {
-		reservations.add(r);
+		personReservations.add(r);
 
 	}
 
 	@Override
 	public void removeReservation(Reservation r) {
-		if (reservations.contains(r)) {
-			reservations.remove(r);
+		if (personReservations.contains(r)) {
+			personReservations.remove(r);
 		}
 	}
 
-	@Override
-	public void setReservation(Set<Reservation> reservations){
-		this.reservations = reservations;
-	}
+
 
 }

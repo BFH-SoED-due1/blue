@@ -12,6 +12,7 @@ import org.junit.Test;
 import ch.bfh.blue.jpa.UserDataImpl;
 import ch.bfh.blue.requirements.AbstractPersistencManager;
 import ch.bfh.blue.requirements.Person;
+import ch.bfh.blue.requirements.Reservation;
 import ch.bfh.blue.requirements.Space;
 
 public class PersistenceTest {
@@ -105,6 +106,33 @@ public class PersistenceTest {
 	AbstractPersistencManager.cleanInstance();
 	pm.close();
 	}
+
+	@Test
+	public void testPersonHasRes() throws InstantiationException, IllegalAccessException {
+	AbstractPersistencManager pm = AbstractPersistencManager.getInstance();
+	Person p = pm.makePerson(new UserDataImpl("max@muster", "max", "123"));
+	Space s1 = pm.makeSpace("S1", 521);
+	Reservation r = pm.makeReservation(p, new Timestamp(1000), new Timestamp(2000), s1);
+	List<Person> persons = pm.getAllPersons();
+	List<Reservation> res = persons.get(0).getReservations();
+	assertEquals(r, res.get(0));
+	AbstractPersistencManager.cleanInstance();
+	pm.close();
+	}
+
+	@Test
+	public void testSpaceHasRes() throws InstantiationException, IllegalAccessException {
+	AbstractPersistencManager pm = AbstractPersistencManager.getInstance();
+	Person p = pm.makePerson(new UserDataImpl("max@muster", "max", "123"));
+	Space s1 = pm.makeSpace("S1", 521);
+	Reservation r = pm.makeReservation(p, new Timestamp(1000), new Timestamp(2000), s1);
+	List<Space> spaces = pm.getAllSpaces();
+	List<Reservation> res = spaces.get(0).getReservations();
+	assertEquals(r, res.get(0));
+	AbstractPersistencManager.cleanInstance();
+	pm.close();
+	}
+
 
 
 

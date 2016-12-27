@@ -73,6 +73,8 @@ public class PersistenceManger extends AbstractPersistencManager {
 		em.getTransaction().begin();
 		Reservation r = new ReservationImpl(p, stStamp, enStamp, space);
 		em.persist(r);
+		p.addReservation(r);
+		space.addReservation(r);
 		em.getTransaction().commit();
 		return r;
 

@@ -7,9 +7,9 @@
  */
 package ch.bfh.blue.jpa;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -29,7 +29,7 @@ public class SpaceImpl implements Space{
 
 
 	@OneToMany(targetEntity=ReservationImpl.class)
-	private Set<Reservation> reservations= new HashSet<>();
+	private List<Reservation> spaceReservations= new ArrayList<>();
 
 	public SpaceImpl() {
 
@@ -48,20 +48,20 @@ public class SpaceImpl implements Space{
 	}
 
 	@Override
-	public Set<Reservation> getReservations() {
-		return Collections.unmodifiableSet(this.reservations);
+	public List<Reservation> getReservations() {
+		return Collections.unmodifiableList(this.spaceReservations);
 	}
 
 	@Override
 	public void addReservation(Reservation res) {
-		this.reservations.add(res);
+		this.spaceReservations.add(res);
 
 	}
 
 	@Override
 	public void removeReservation(Reservation res) {
-		if (this.reservations.contains(res)){
-			this.reservations.remove(res);
+		if (this.spaceReservations.contains(res)){
+			this.spaceReservations.remove(res);
 		}
 
 	}
@@ -79,8 +79,8 @@ public class SpaceImpl implements Space{
 	}
 
 
-	public void setReservations(Set<Reservation> reservations) {
-		this.reservations = reservations;
+	public void setReservations(List<Reservation> reservations) {
+		this.spaceReservations = reservations;
 	}
 
 }
