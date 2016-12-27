@@ -14,39 +14,51 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 
-public class LoginView extends FormLayout implements View{
+public class LoginView extends FormLayout implements View {
+
+	private Navigator navigator;
 	
-	Navigator navigator;
-	
+	//Layouts which contain components
+	private final HorizontalLayout buttonBar = new HorizontalLayout();
+
+	//Labels and Components
 	private final Label header = new Label();
 	private final TextField email = new TextField();
 	private final PasswordField passwd = new PasswordField();
-	private final HorizontalLayout buttonBar = new HorizontalLayout();
-	
+
+	//Buttons
 	private final Button loginBtn = new Button("Login");
 	private final Button homeBtn = new Button("Home");
-	
-	public LoginView(){
-		for(Component c: new Component[]{ header, email, passwd, buttonBar})
+
+	public LoginView() {
+		for (Component c : new Component[] { header, email, passwd, buttonBar })
 			this.addComponent(c);
 		configureUI();
+		configureButtons();
 	}
 
-	private void configureUI(){
+	//configure all the settings for the different UI components
+	private void configureUI() {
 		header.setValue("LOGIN");
 		email.setCaption("E-mail");
 		email.setInputPrompt("Enter e-mail");
 		passwd.setCaption("Password");
 		passwd.setInputPrompt("Enter password");
-		
+
 		buttonBar.addComponents(homeBtn, loginBtn);
 		buttonBar.setMargin(true);
 		buttonBar.setSpacing(true);
+
 		
+	}
+	
+	//configure handlers and settings for the buttons
+	private void configureButtons(){
 		loginBtn.addClickListener(e -> {
-			//Database Queries
+			// Database Queries
+			navigator.navigateTo("availableSpaces");
 		});
-		
+
 		homeBtn.addClickListener(e -> {
 			navigator.navigateTo("home");
 		});

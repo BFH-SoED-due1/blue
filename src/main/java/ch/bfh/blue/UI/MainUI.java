@@ -7,7 +7,6 @@
  */
 package ch.bfh.blue.UI;
 
-
 import javax.servlet.annotation.WebServlet;
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
@@ -38,56 +37,53 @@ public class MainUI extends UI {
 		final VerticalLayout layout = new VerticalLayout();
 		final CssLayout topBar = new CssLayout();
 		final CssLayout viewLayout = new CssLayout();
-		
 
-		
 		final Navigator navigator = new Navigator(this, viewLayout);
 		navigator.addView("", HomeView.class);
-		navigator.addView("home", new HomeView());
+		navigator.addView("home", HomeView.class);
 		navigator.addView("login", LoginView.class);
 		navigator.addView("register", RegisterView.class);
-		
-		//Button loginBtn = new Button("Login");
-		//Button registerBtn = new Button("Register");
-		//topBar.addComponents(loginBtn,registerBtn);
-		
-//		loginBtn.addClickListener(e -> {
-//			navigator.navigateTo("login");
-//						
-//		});
-//		
-//		registerBtn.addClickListener(e -> {
-//			navigator.navigateTo("register");
-//						
-//		});
-		
-		for(String s: new String[]{"home"}){
+		navigator.addView("availableSpaces", AvailableSpacesView.class);
+		navigator.addView("reservationBySelectedRoom", ReservationBySelectedRoomView.class);
+		navigator.addView("reservationBySelectedTime", ReservationBySelectedTimeView.class);
+
+		// Button loginBtn = new Button("Login");
+		// Button registerBtn = new Button("Register");
+		// topBar.addComponents(loginBtn,registerBtn);
+
+		// loginBtn.addClickListener(e -> {
+		// navigator.navigateTo("login");
+		//
+		// });
+		//
+		// registerBtn.addClickListener(e -> {
+		// navigator.navigateTo("register");
+		//
+		// });
+
+		for (String s : new String[] { "home" }) {
 			topBar.addComponent(this.createNavigationButton(s, navigator));
 		}
-		
+
 		layout.addComponent(viewLayout);
 		layout.setMargin(true);
 		setContent(layout);
-		
+
 	}
-	
-	private Button createNavigationButton(String state, Navigator navigator){
-		return new Button(state, new Button.ClickListener() {	
+
+	private Button createNavigationButton(String state, Navigator navigator) {
+		return new Button(state, new Button.ClickListener() {
 			@Override
 			public void buttonClick(ClickEvent event) {
 				navigator.navigateTo(state);
 			}
 		});
 	}
-	
-
-	
 
 	// testkommentar
 	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
 	@VaadinServletConfiguration(ui = MainUI.class, productionMode = false)
 	public static class MyUIServlet extends VaadinServlet {
 	}
-
 
 }
