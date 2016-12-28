@@ -44,6 +44,7 @@ public class PersistenceManger extends AbstractPersistencManager {
 	public void close() {
 		this.em.close();
 		this.factory.close();
+		AbstractPersistencManager.cleanInstance();
 	}
 
 	public void deletePerson(Person p) {
