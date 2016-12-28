@@ -8,6 +8,7 @@ import ch.bfh.blue.jpa.UserDataImpl;
 import ch.bfh.blue.requirements.AbstractPersistencManager;
 import ch.bfh.blue.requirements.Person;
 import ch.bfh.blue.requirements.Space;
+import ch.bfh.blue.requirements.UserData;
 
 public class Controller {
 	private AbstractPersistencManager pm;
@@ -40,7 +41,7 @@ public class Controller {
 	}
 
 	public void createPerson(String email,String user,String pw){
-		UserDataImpl data = new UserDataImpl(email,user,pw);
+		UserData data = (UserData)new UserDataImpl(email,user,pw);
 		pm.makePerson(data);
 	}
 
