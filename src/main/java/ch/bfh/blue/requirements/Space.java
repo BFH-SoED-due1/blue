@@ -7,12 +7,12 @@
  */
 package ch.bfh.blue.requirements;
 
-import java.util.Set;
+import java.util.List;
 
 public interface Space {
 	public String getName();
 
-	public Set<Reservation> getReservations();
+	public List<Reservation> getReservations();
 
 	public void addReservation(Reservation res);
 

@@ -45,5 +45,9 @@ public class Controller {
 		pm.makePerson(data);
 	}
 
+	public List<Space> getAllspaces(){
+		return pm.getAllSpaces();
+	}
+
 
 }
