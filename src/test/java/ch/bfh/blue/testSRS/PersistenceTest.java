@@ -45,6 +45,21 @@ public class PersistenceTest {
 	}
 
 	@Test
+	public void testMakeTwoResvations() throws InstantiationException, IllegalAccessException {
+	AbstractPersistencManager pm = AbstractPersistencManager.getInstance();
+	pm.makePerson(new UserDataImpl("max@muster", "max", "123"));
+	Person p = pm.makeLoginQuery("max", "123");
+	Space s = pm.makeSpace("s1", 521);
+	Reservation r1 = pm.makeReservation(p, new Timestamp(1000), new Timestamp(2000), s);
+	Reservation r2 = pm.makeReservation(p, new Timestamp(3000), new Timestamp(4000), s);
+	List<Reservation> rList = p.getReservations();
+	assertEquals(r1, rList.get(0));
+	assertEquals(r2, rList.get(1));
+	pm.close();
+	}
+
+
+	@Test
 	public void testGetSpaceWithEqualTimes() throws InstantiationException, IllegalAccessException {
 	AbstractPersistencManager pm = AbstractPersistencManager.getInstance();
 	Person p = pm.makePerson(new UserDataImpl("max@muster", "max", "123"));

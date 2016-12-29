@@ -28,7 +28,7 @@ public class SpaceImpl implements Space{
 	private String name;
 
 
-	@OneToMany(targetEntity=ReservationImpl.class)
+	@OneToMany(targetEntity=ReservationImpl.class, mappedBy="rentSpace")
 	private List<Reservation> spaceReservations= new ArrayList<>();
 
 	public SpaceImpl() {
