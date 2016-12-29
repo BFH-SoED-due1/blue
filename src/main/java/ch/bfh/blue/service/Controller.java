@@ -14,40 +14,37 @@ public class Controller {
 	private AbstractPersistencManager pm;
 
 	public Controller() throws InstantiationException, IllegalAccessException {
-		 pm = AbstractPersistencManager.getInstance();
-
+		pm = AbstractPersistencManager.getInstance();
 	}
 
-	public boolean authentication(String user,String pw){
+	public boolean authentication(String user, String pw) {
 		return pm.makeLoginQuery(user, pw) != null;
 	}
 
-	public List<Space> getSpaceOnTime(Date stDate, Date enDate){
+	public List<Space> getSpaceOnTime(Date stDate, Date enDate) {
 		return pm.getFreeSpaces(new Timestamp(stDate.getTime()), new Timestamp(enDate.getTime()));
-
 	}
 
-	public boolean isFree(Date stDate, Date enDate,Space s){
+	public boolean isFree(Date stDate, Date enDate, Space s) {
 		List<Space> spaces = pm.getFreeSpaces(new Timestamp(stDate.getTime()), new Timestamp(enDate.getTime()));
 		return spaces.contains(s);
 	}
 
-	public void createReservation(Person p,Date stDate, Date enDate,Space space){
+	public void createReservation(Person p, Date stDate, Date enDate, Space space) {
 		pm.makeReservation(p, new Timestamp(stDate.getTime()), new Timestamp(enDate.getTime()), space);
 	}
 
-	public void createSpace(String name,int spaceNumber){
+	public void createSpace(String name, int spaceNumber) {
 		pm.makeSpace(name, spaceNumber);
 	}
 
-	public void createPerson(String email,String user,String pw){
-		UserData data = (UserData)new UserDataImpl(email,user,pw);
+	public void createPerson(String email, String user, String pw) {
+		UserData data = (UserData) new UserDataImpl(email, user, pw);
 		pm.makePerson(data);
 	}
 
-	public List<Space> getAllspaces(){
+	public List<Space> getAllspaces() {
 		return pm.getAllSpaces();
 	}
-
 
 }
