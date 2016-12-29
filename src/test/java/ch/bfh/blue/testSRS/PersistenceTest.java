@@ -41,7 +41,6 @@ public class PersistenceTest {
 	pm.makePerson(new UserDataImpl("max@muster", "max", "123"));
 	Person p = pm.makeLoginQuery("max", "123");
 	assertNotNull(p);
-	AbstractPersistencManager.cleanInstance();
 	pm.close();
 	}
 
@@ -58,7 +57,6 @@ public class PersistenceTest {
 	List<Space> s = pm.getFreeSpaces(st, et);
 	assertEquals(s2,s.get(0));
 	assertEquals(s3,s.get(1));
-	AbstractPersistencManager.cleanInstance();
 	pm.close();
 	}
 
@@ -73,7 +71,6 @@ public class PersistenceTest {
 	List<Space> s = pm.getFreeSpaces(new Timestamp(1100), new Timestamp(1900));
 	assertEquals(s2,s.get(0));
 	assertEquals(s3,s.get(1));
-	AbstractPersistencManager.cleanInstance();
 	pm.close();
 	}
 
@@ -88,7 +85,6 @@ public class PersistenceTest {
 	List<Space> s = pm.getFreeSpaces(new Timestamp(900), new Timestamp(2100));
 	assertEquals(s2,s.get(0));
 	assertEquals(s3,s.get(1));
-	AbstractPersistencManager.cleanInstance();
 	pm.close();
 	}
 
@@ -103,7 +99,6 @@ public class PersistenceTest {
 	List<Space> s = pm.getFreeSpaces(new Timestamp(1000), new Timestamp(2100));
 	assertEquals(s2,s.get(0));
 	assertEquals(s3,s.get(1));
-	AbstractPersistencManager.cleanInstance();
 	pm.close();
 	}
 
@@ -116,7 +111,6 @@ public class PersistenceTest {
 	List<Person> persons = pm.getAllPersons();
 	List<Reservation> res = persons.get(0).getReservations();
 	assertEquals(r, res.get(0));
-	AbstractPersistencManager.cleanInstance();
 	pm.close();
 	}
 
@@ -129,7 +123,6 @@ public class PersistenceTest {
 	List<Space> spaces = pm.getAllSpaces();
 	List<Reservation> res = spaces.get(0).getReservations();
 	assertEquals(r, res.get(0));
-	AbstractPersistencManager.cleanInstance();
 	pm.close();
 	}
 
