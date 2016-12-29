@@ -1,6 +1,9 @@
 package ch.bfh.blue.UI;
 
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
@@ -10,19 +13,35 @@ import com.vaadin.ui.Component;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.Label;
 
+import ch.bfh.blue.service.Controller;
+
+/**
+ * After selecting a timeframe, this view will show all the
+ * available rooms for this timeframe
+ * @author SRS-Team
+ *
+ */
+
 public class ReservationBySelectedTimeView extends CssLayout implements View {
 	
 	private Navigator navigator;
+	Controller controller;
+	
+	//Constants
+	private static final String DATE_FORMAT = "dd.MM.yy kk:mm";
 	
 	//Labels and Components
 	String dates = new String();
+	private Date startDate;
+	private Date endDate;
 	private final Label label = new Label();
 	private final Label enter = new Label();
 	
 	//Buttons
 	private final Button homeBtn = new Button("Home");
 	
-	public ReservationBySelectedTimeView(){
+	public ReservationBySelectedTimeView(Controller contr){
+		controller = contr;
 		for (Component c : new Component[] {label, homeBtn, enter})
 			this.addComponent(c);
 		configureUI();
@@ -46,12 +65,14 @@ public class ReservationBySelectedTimeView extends CssLayout implements View {
 		navigator = event.getNavigator();
 		dates = event.getParameters();
 		String twoDates[] = dates.split("/");
-		enter.setCaption(twoDates[0]+"||"+twoDates[1]);
-		//DateFormat format = new SimpleDateFormat();
-		//Date date = format
-		//list times for the selected room
-		//list rooms for the selected time
-		
+		DateFormat format = new SimpleDateFormat(DATE_FORMAT);
+		try {
+			startDate = format.parse(twoDates[0]);
+			endDate = format.parse(twoDates[1]);
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		enter.setCaption(startDate+"||"+endDate);
 	}
 
 }

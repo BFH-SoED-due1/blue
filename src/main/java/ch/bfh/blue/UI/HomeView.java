@@ -3,28 +3,41 @@ package ch.bfh.blue.UI;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Page;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
-import com.vaadin.ui.PasswordField;
-import com.vaadin.ui.TextField;
+
+import ch.bfh.blue.service.Controller;
+
+/**
+ * This is the main page which is also set as default in the navigator
+ * @author SRS-Team
+ *
+ */
 
 public class HomeView extends FormLayout implements View {
 
 	private Navigator navigator;
+	private Controller controller;
 
+	//Constants
+	private static final String REGISTER_SUCCESS = "Registration successful, please login.";
+	
 	//Labels and Components
 	private final Label label = new Label();
 	private final Label lLabel = new Label();
 	private final Label rLabel = new Label();
 
-	private final Button loginBtn = new Button("Login");
-	private final Button registerBtn = new Button("Register");
+	//Buttons
+	private final Button loginBtn = new Button("Login here");
+	private final Button registerBtn = new Button("Register here");
 
-	public HomeView() {
-		for (Component c : new Component[] { label, lLabel, loginBtn, rLabel, registerBtn })
+	public HomeView(Controller contr) {
+		controller = contr;
+		for (Component c : new Component[] { label, lLabel, loginBtn, rLabel, registerBtn})
 			this.addComponent(c);
 		configureUI();
 		configureButtons();
@@ -52,6 +65,12 @@ public class HomeView extends FormLayout implements View {
 	@Override
 	public void enter(ViewChangeEvent event) {
 		navigator = event.getNavigator();
+		String regOk = "regOk";
+		if(event.getParameters().equals(regOk)){
+			Notification notif = new Notification(REGISTER_SUCCESS,Notification.Type.WARNING_MESSAGE);
+			notif.setDelayMsec(3500);
+			notif.show(Page.getCurrent());
+		}
 	}
 
 }

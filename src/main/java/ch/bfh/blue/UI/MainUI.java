@@ -18,6 +18,7 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
+import ch.bfh.blue.service.Controller;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser
@@ -31,35 +32,49 @@ import com.vaadin.ui.Button.ClickEvent;
 @SuppressWarnings("serial")
 @Theme("mytheme")
 public class MainUI extends UI {
+	
+	private Controller controller;
 
 	@Override
 	protected void init(VaadinRequest vaadinRequest) {
 		final VerticalLayout layout = new VerticalLayout();
 		final CssLayout topBar = new CssLayout();
 		final CssLayout viewLayout = new CssLayout();
+		final Navigator navigator;
+		
+		if (controller == null) {
+			try {
+				controller = new Controller();
+			} catch (InstantiationException e) {
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				e.printStackTrace();
+			}
+			createDemoRooms();
+			createDemoPersons();
+			createDemoReservations();
+		}
+		
+		
+		/*
+		 * is called upon closing of the UI
+		 * do cleanup stuff here
+		 */
+		addDetachListener(new DetachListener() {
+		    @Override
+		    public void detach(DetachEvent event) {
+		    	//close
+		    }
+		});
 
-		final Navigator navigator = new Navigator(this, viewLayout);
-		navigator.addView("", HomeView.class);
-		navigator.addView("home", HomeView.class);
-		navigator.addView("login", LoginView.class);
-		navigator.addView("register", RegisterView.class);
-		navigator.addView("availableSpaces", AvailableSpacesView.class);
-		navigator.addView("reservationBySelectedRoom", ReservationBySelectedRoomView.class);
-		navigator.addView("reservationBySelectedTime", ReservationBySelectedTimeView.class);
-
-		// Button loginBtn = new Button("Login");
-		// Button registerBtn = new Button("Register");
-		// topBar.addComponents(loginBtn,registerBtn);
-
-		// loginBtn.addClickListener(e -> {
-		// navigator.navigateTo("login");
-		//
-		// });
-		//
-		// registerBtn.addClickListener(e -> {
-		// navigator.navigateTo("register");
-		//
-		// });
+		navigator = new Navigator(this, viewLayout);
+		navigator.addView("", new HomeView(controller));
+		navigator.addView("home", new HomeView(controller));
+		navigator.addView("login", new LoginView(controller));
+		navigator.addView("register", new RegisterView(controller));
+		navigator.addView("availableSpaces", new AvailableSpacesView(controller));
+		navigator.addView("reservationBySelectedRoom", new ReservationBySelectedRoomView(controller));
+		navigator.addView("reservationBySelectedTime", new ReservationBySelectedTimeView(controller));
 
 		for (String s : new String[] { "home" }) {
 			topBar.addComponent(this.createNavigationButton(s, navigator));
@@ -79,6 +94,33 @@ public class MainUI extends UI {
 			}
 		});
 	}
+	
+	
+	/**
+	 * adds a few rooms to the db to test the functionality
+	 */
+	private void createDemoRooms(){
+		controller.createSpace("aula", 1);
+		controller.createSpace("garage", 2);
+		controller.createSpace("tennisplatz", 3);
+	}
+	
+	/**
+	 * creates a few persons with username and pw to test the functionality
+	 */
+	private void createDemoPersons(){
+		controller.createPerson("one@mail", "one", "1");
+		controller.createPerson("two@mail", "two", "2");
+		controller.createPerson("three@mail", "three", "3");
+	}
+	
+	/**
+	 * creates a few reservations to test the functionality
+	 */
+	private void createDemoReservations(){
+		
+	}
+	
 
 	// testkommentar
 	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

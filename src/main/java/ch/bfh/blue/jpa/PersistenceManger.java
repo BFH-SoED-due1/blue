@@ -97,8 +97,13 @@ public class PersistenceManger extends AbstractPersistencManager {
 		TypedQuery<Person> query = em.createQuery("SELECT m FROM Mieter m  WHERE m.data.userName = ?1 AND m.data.pw=?2",
 				Person.class);
 		query.setParameter(1, name);
-		return query.setParameter(2, pw).getSingleResult();
-
+		query.setParameter(2, pw);
+		query.setMaxResults(1);
+		List<Person> pList = query.getResultList();
+		if(pList==null||pList.isEmpty()){
+			return null;
+		}
+		return pList.get(0);
 	}
 
 	@Override
