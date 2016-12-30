@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
@@ -98,7 +99,12 @@ public class PersistenceManger extends AbstractPersistencManager {
 		TypedQuery<Person> query = em.createQuery("SELECT m FROM Mieter m  WHERE m.data.userName = ?1 AND m.data.pw=?2",
 				Person.class);
 		query.setParameter(1, name);
-		return query.setParameter(2, pw).getSingleResult();
+		query.setParameter(2, pw);
+		try {
+			return query.getSingleResult();
+		} catch (NoResultException e ) {
+			return null;
+		}
 
 	}
 

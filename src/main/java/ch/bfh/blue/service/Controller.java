@@ -7,6 +7,7 @@ import java.util.List;
 import ch.bfh.blue.jpa.UserDataImpl;
 import ch.bfh.blue.requirements.AbstractPersistencManager;
 import ch.bfh.blue.requirements.Person;
+import ch.bfh.blue.requirements.Reservation;
 import ch.bfh.blue.requirements.Space;
 import ch.bfh.blue.requirements.UserData;
 
@@ -32,21 +33,25 @@ public class Controller {
 		return spaces.contains(s);
 	}
 
-	public void createReservation(Person p,Date stDate, Date enDate,Space space){
-		pm.makeReservation(p, new Timestamp(stDate.getTime()), new Timestamp(enDate.getTime()), space);
+	public Reservation createReservation(Person p,Date stDate, Date enDate,Space space){
+		return pm.makeReservation(p, new Timestamp(stDate.getTime()), new Timestamp(enDate.getTime()), space);
 	}
 
-	public void createSpace(String name,int spaceNumber){
-		pm.makeSpace(name, spaceNumber);
+	public Space createSpace(String name,int spaceNumber){
+		return pm.makeSpace(name, spaceNumber);
 	}
 
-	public void createPerson(String email,String user,String pw){
-		UserData data = (UserData)new UserDataImpl(email,user,pw);
-		pm.makePerson(data);
+	public Person createPerson(String email,String user,String pw){
+		UserData data = new UserDataImpl(email,user,pw);
+		return pm.makePerson(data);
 	}
 
 	public List<Space> getAllspaces(){
 		return pm.getAllSpaces();
+	}
+
+	public void close(){
+		pm.close();
 	}
 
 
