@@ -69,9 +69,11 @@ public class MainUI extends UI {
 		    @Override
 		    public void detach(DetachEvent event) {
 		    	//during work
-		    	//controller.close();
+		    	controller.close();
 		    }
 		});
+		
+		
 
 		navigator = new Navigator(this, viewLayout);
 		navigator.addView("", new HomeView(controller));

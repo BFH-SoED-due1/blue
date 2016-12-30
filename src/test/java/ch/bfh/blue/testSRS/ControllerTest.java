@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
@@ -54,10 +55,28 @@ public class ControllerTest {
 		Space s1 = c.createSpace("s1", 521);
 		Space s2 = c.createSpace("s2", 522);
 		Space s3 = c.createSpace("s3", 523);
-		c.createReservation(null,p, new Timestamp(1000), new Timestamp(2000), s1);
-		List<Space> spList = c.getSpaceOnTime(new Timestamp(1000), new Timestamp(2000));
+		Date d1 = new Date();
+		Date d2 = new Date();
+		c.createReservation(null,p, d1, d2, s1);
+		List<Space> spList = c.getSpaceOnTime(d1, d2);
 		assertEquals(s2,spList.get(0));
 		assertEquals(s3,spList.get(1));
+		c.close();
+	}
+	
+	@Test
+	public void testGetSpaceOnTimeNoReservation() throws InstantiationException, IllegalAccessException {
+		Controller c =  new Controller();
+		Person p = c.createPerson("muster@muster.ch", "max", "123");
+		Space s1 = c.createSpace("s1", 521);
+		Space s2 = c.createSpace("s2", 522);
+		Space s3 = c.createSpace("s3", 523);
+		Date d1 = new Date();
+		Date d2 = new Date();
+		List<Space> spList = c.getSpaceOnTime(d1, d2);
+		assertEquals(s1,spList.get(0));
+		assertEquals(s2,spList.get(1));
+		assertEquals(s3,spList.get(2));
 		c.close();
 	}
 
