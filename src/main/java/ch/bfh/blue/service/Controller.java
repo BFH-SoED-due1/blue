@@ -29,7 +29,9 @@ public class Controller {
 	}
 
 	public List<Space> getSpaceOnTime(Date stDate, Date enDate) {
-		return pm.getFreeSpaces(new Timestamp(stDate.getTime()), new Timestamp(enDate.getTime()));
+		Timestamp startStamp = new Timestamp(stDate.getTime());
+		Timestamp endStamp = new Timestamp(enDate.getTime());
+		return pm.getFreeSpaces(startStamp, endStamp);
 	}
 
 	public boolean isFree(Date stDate, Date enDate, Space s) {
