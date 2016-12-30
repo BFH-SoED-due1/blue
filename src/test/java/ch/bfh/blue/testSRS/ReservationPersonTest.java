@@ -22,7 +22,7 @@ public class ReservationPersonTest {
 	@Test
 	public void testPersonHasReservation() {
 		Mieter m1 = new Mieter(new UserDataImpl("max.muster@musterprovider.ch", "Max", "123"));
-		Reservation r1 = new ReservationImpl(m1,null,null, new SpaceImpl("s1",1));
+		Reservation r1 = new ReservationImpl(null, m1,null,null, new SpaceImpl("s1",1));
 		m1.addReservation(r1);
 		assertNotNull(m1.getReservations());
 	}
@@ -30,7 +30,7 @@ public class ReservationPersonTest {
 	@Test
 	public void testReservationHasRenter(){
 		Person m1 = new Mieter(new UserDataImpl("max.muster@musterprovider.ch", "Max", "123"));
-		Reservation r1 = new ReservationImpl(m1,null,null, new SpaceImpl("s1",1));
+		Reservation r1 = new ReservationImpl(null, m1,null,null, new SpaceImpl("s1",1));
 		r1.setOwner(m1);
 		assertNotNull(r1.getOwner());
 	}

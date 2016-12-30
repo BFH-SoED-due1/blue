@@ -2,6 +2,8 @@ package ch.bfh.blue.UI;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
+
+import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -73,8 +75,13 @@ public class AvailableSpacesView extends VerticalLayout implements View {
 		roomsCB.setInputPrompt("select a space");
 		selectHL.addComponents(roomsCB, selectBtn);
 		selectHL.setMargin(true);
+		selectHL.setSpacing(true);
 		roomCaption.setValue("Select a room for which you would like to see the available timeframes.");
 		dateCaption.setValue("Select a timeframe in which you would like to see the available rooms.");
+		
+		dateHL.addComponents(startDate, endDate, availableBtn);
+		dateHL.setSpacing(true);
+		dateHL.setMargin(true);
 		
 	}
 	
@@ -83,12 +90,15 @@ public class AvailableSpacesView extends VerticalLayout implements View {
 	 */
 	private void configureButtons(){
 		selectBtn.addClickListener(e -> {
-			String room = roomsCB.getValue().toString();
-			navigator.navigateTo("reservationBySelectedRoom/"+room);
+			System.out.println(roomsCB.getValue().getClass());
+			controller.setCurrentSpace((Space)roomsCB.getValue());
+			System.out.println(controller.getCurrentSpace());
+			navigator.navigateTo("reservationBySelectedRoom");
 		});
 		
 		availableBtn.addClickListener(e -> {
-			navigator.navigateTo("reservationBySelectedTime/");
+			controller.setCurrentDate(startDate.getValue(), endDate.getValue());
+			navigator.navigateTo("reservationBySelectedTime");
 		});
 		
 		logoutBtn.addClickListener(e -> {
@@ -102,19 +112,13 @@ public class AvailableSpacesView extends VerticalLayout implements View {
 	 * fills the combo box with rooms
 	 */
 	private void fillComboBox(){
-		for(Space s: controller.getAllspaces()){
-		roomsCB.addItem(s.getName());
-		}
+		roomsCB.setContainerDataSource(new BeanItemContainer<>(Space.class, controller.getAllspaces()));
 	}
 	
 	/**
 	 * configure DateFields and add them to the dateLayout
 	 */
-	private void configureDatePickers(){
-		dateHL.addComponents(startDate, endDate, availableBtn);
-		dateHL.setSpacing(true);
-		dateHL.setMargin(true);
-		
+	private void configureDatePickers(){		
 		startDate.setResolution(Resolution.MINUTE);
 		startDate.setDateFormat(DATE_FORMAT);
 		startDate.setValue(new Date()); // Set the date and time to present

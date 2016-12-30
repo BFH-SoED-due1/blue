@@ -12,6 +12,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 
+import ch.bfh.blue.requirements.Person;
 import ch.bfh.blue.service.Controller;
 
 /**
@@ -77,7 +78,9 @@ public class LoginView extends FormLayout implements View  {
 			String username, password;
 			username = user.getValue();
 			password = passwd.getValue();
-			if(controller.authentication(username, password)){
+			Person pers = controller.authentication(username, password);
+			if(pers != null){
+				controller.setCurrentPerson(pers);
 				navigator.navigateTo("availableSpaces");
 			} else {
 				message.setValue(LOGIN_ERR_INVALID_DATA);

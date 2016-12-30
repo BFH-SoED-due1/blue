@@ -20,7 +20,7 @@ public abstract class AbstractPersistencManager {
 
 	public abstract Space makeSpace(String name, int spaceNumber);
 
-	public abstract Reservation makeReservation(Person p, Timestamp stStamp, Timestamp enStamp, Space space);
+	public abstract Reservation makeReservation(String title, Person p, Timestamp stStamp, Timestamp enStamp, Space space);
 
 	public abstract List<Space> getAllSpaces();
 

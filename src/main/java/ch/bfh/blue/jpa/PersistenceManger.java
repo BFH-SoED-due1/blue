@@ -70,15 +70,14 @@ public class PersistenceManger extends AbstractPersistencManager {
 	}
 
 	@Override
-	public Reservation makeReservation(Person p, Timestamp stStamp, Timestamp enStamp, Space space) {
+	public Reservation makeReservation(String title, Person p, Timestamp stStamp, Timestamp enStamp, Space space) {
 		em.getTransaction().begin();
-		Reservation r = new ReservationImpl(p, stStamp, enStamp, space);
+		Reservation r = new ReservationImpl(title, p, stStamp, enStamp, space);
 		em.persist(r);
 		p.addReservation(r);
 		space.addReservation(r);
 		em.getTransaction().commit();
 		return r;
-
 	}
 
 	@Override

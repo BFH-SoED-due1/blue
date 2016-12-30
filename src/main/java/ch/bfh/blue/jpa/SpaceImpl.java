@@ -65,6 +65,11 @@ public class SpaceImpl implements Space{
 		}
 
 	}
+	
+
+	public String toString(){
+		return name;
+	}
 
 	public int getSpaceNumber() {
 		return spaceNumber;

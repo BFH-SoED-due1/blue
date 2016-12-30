@@ -6,15 +6,19 @@ import java.util.GregorianCalendar;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.shared.ui.datefield.Resolution;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Calendar;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.DateField;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.components.calendar.event.BasicEvent;
 
+import ch.bfh.blue.requirements.Space;
 import ch.bfh.blue.service.Controller;
 
 /**
@@ -34,16 +38,25 @@ public class ReservationBySelectedRoomView extends VerticalLayout implements Vie
 	
 	private Navigator navigator;
 	private Controller controller;
+	
+	//Constants
+		private static final String DATE_FORMAT = "dd.MM.yy kk:mm";
+
 
 	// Layouts which contain components
 	private final HorizontalLayout navBtnHL = new HorizontalLayout();
 	private final HorizontalLayout calZoomHL = new HorizontalLayout();
-	private Date startDate;
-	private Date endDate;
+	private final HorizontalLayout dateFieldHL = new HorizontalLayout();
+	Date startDate;
+	Date endDate;
 
 	// Labels and Components
 	private final Label heading = new Label();
+	private final Label dateFieldCaption = new Label();
 	Calendar cal = new Calendar();
+	private DateField startDateField = new DateField();
+	private DateField endDateField = new DateField();
+	private TextField resTitle = new TextField();
 
 	// Buttons
 	private final Button logoutBtn = new Button("Logout");
@@ -51,13 +64,16 @@ public class ReservationBySelectedRoomView extends VerticalLayout implements Vie
 	private final Button btnDay = new Button("Day view");
 	private final Button btnWeek = new Button("Week view");
 	private final Button btnMonth = new Button("Month view");
+	private final Button reservationBtn = new Button("Make reservation");
 
 	public ReservationBySelectedRoomView(Controller contr) {
-		// controller = contr;
-		for (Component c : new Component[] { heading, calZoomHL, cal, navBtnHL })
-			this.addComponent(c);
+		controller = contr;
 		configureUI();
 		configureButtons();
+		configureCal();
+		configureDatePickers();
+		for (Component c : new Component[] { heading, calZoomHL, cal, dateFieldCaption, dateFieldHL, navBtnHL })
+			this.addComponent(c);
 	}
 
 	/**
@@ -66,12 +82,17 @@ public class ReservationBySelectedRoomView extends VerticalLayout implements Vie
 	private void configureUI() {
 		this.setSpacing(true);
 		heading.setValue("Available timeframes for the selected room:");
+		dateFieldCaption.setValue("Select the timeframe for your reservation.");
 		
 		//***addnig demo event to calendar
 		endDate = addTimeToDate(new Date(), java.util.Calendar.HOUR, 1);
 		cal.addEvent(new BasicEvent("event", "eventdiscription", new Date(), endDate));
 		
-		configureCal();
+		dateFieldHL.addComponents(startDateField, endDateField, resTitle, reservationBtn);
+		dateFieldHL.setSpacing(true);
+		dateFieldHL.setMargin(true);
+		
+		resTitle.setInputPrompt("Title of reservation");
 	}
 
 	/**
@@ -107,8 +128,36 @@ public class ReservationBySelectedRoomView extends VerticalLayout implements Vie
 			}
 		});
 		
+		reservationBtn.addClickListener(new Button.ClickListener() {
+			public void buttonClick(ClickEvent event) {
+				String t = resTitle.getValue();
+				Date st = startDateField.getValue();
+				Date en = endDateField.getValue();
+				Space spc = controller.getCurrentSpace();
+				controller.createReservation(t, controller.getCurrentPerson(), st, en, spc);
+						cal.addEvent(new BasicEvent(t, "sgd", st, en));
+			}
+		});
+		
+		
 		calZoomHL.addComponents(btnDay,btnWeek,btnMonth);
 		calZoomHL.setSpacing(true);
+	}
+	
+	/**
+	 * configure DateFields and add them to the dateLayout
+	 */
+	private void configureDatePickers(){		
+		startDateField.setResolution(Resolution.MINUTE);
+		startDateField.setDateFormat(DATE_FORMAT);
+		startDateField.setValue(new Date()); // Set the date and time to present
+
+		endDateField.setResolution(Resolution.MINUTE);
+		endDateField.setDateFormat(DATE_FORMAT);
+		GregorianCalendar gregCal = new GregorianCalendar();
+		gregCal.setTime(new Date());
+		gregCal.add(java.util.Calendar.HOUR, 1);
+		endDateField.setValue(gregCal.getTime()); // Set the date and time to present + 1h
 	}
 	
 	/**
@@ -119,7 +168,7 @@ public class ReservationBySelectedRoomView extends VerticalLayout implements Vie
 		cal.setHeight("600px");
 		cal.setStartDate(new Date());
 		cal.setEndDate(addTimeToDate(new Date(), java.util.Calendar.DAY_OF_WEEK, 7));
-		//cal.setReadOnly(true);
+		cal.setReadOnly(true);
 	}
 	
 	/**
@@ -137,10 +186,9 @@ public class ReservationBySelectedRoomView extends VerticalLayout implements Vie
 	 */
 	@Override
 	public void enter(ViewChangeEvent event) {
+		resTitle.clear();
 		navigator = event.getNavigator();
-		// list times for the selected room
-		// list rooms for the selected time
-
+		heading.setValue("Available timeframes for the selected room: "+controller.getCurrentSpace());
 	}
 
 }

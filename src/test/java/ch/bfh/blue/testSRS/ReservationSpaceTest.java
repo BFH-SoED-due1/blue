@@ -22,7 +22,7 @@ public class ReservationSpaceTest {
 	@Test
 	public void testReservationHasSpace() {
 		Space s1 = new SpaceImpl("space1",205);
-		Reservation r1 = new ReservationImpl(null,null, null, s1);
+		Reservation r1 = new ReservationImpl(null, null,null, null, s1);
 		r1.setSpace(s1);
 		assertNotNull(r1.getSpace());
 	}

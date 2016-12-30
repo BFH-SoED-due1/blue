@@ -18,6 +18,8 @@ import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Button.ClickEvent;
+
+import ch.bfh.blue.requirements.AbstractPersistencManager;
 import ch.bfh.blue.service.Controller;
 
 /**
@@ -41,21 +43,17 @@ public class MainUI extends UI {
 		final CssLayout topBar = new CssLayout();
 		final CssLayout viewLayout = new CssLayout();
 		final Navigator navigator;
-		
-		if (controller == null) {
+
 			try {
-				controller = new Controller();
+				controller = Controller.getInstance();
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 			}
-			createDemoRooms();
-			createDemoPersons();
-			createDemoReservations();
-		}
 		
-		
+			
+			
 		/*
 		 * is called upon closing of the UI
 		 * do cleanup stuff here
@@ -63,10 +61,11 @@ public class MainUI extends UI {
 		addDetachListener(new DetachListener() {
 		    @Override
 		    public void detach(DetachEvent event) {
-		    	//close
+		    	//during work
+		    	//controller.close();
 		    }
 		});
-
+		
 		navigator = new Navigator(this, viewLayout);
 		navigator.addView("", new HomeView(controller));
 		navigator.addView("home", new HomeView(controller));
