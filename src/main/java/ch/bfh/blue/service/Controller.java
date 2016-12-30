@@ -22,14 +22,6 @@ public class Controller {
 
 	public Controller() throws InstantiationException, IllegalAccessException {
 		pm = AbstractPersistencManager.getInstance();
-
-		createSpace("aula", 1);
-		createSpace("garage", 2);
-		createSpace("tennisplatz", 3);
-
-		createPerson("one@mail", "one", "1");
-		createPerson("two@mail", "two", "2");
-		createPerson("three@mail", "three", "3");
 	}
 
 	public Person authentication(String user, String pw) {

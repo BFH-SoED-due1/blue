@@ -46,6 +46,13 @@ public class MainUI extends UI {
 
 			try {
 				controller = new Controller();
+				controller.createSpace("aula", 1);
+				controller.createSpace("garage", 2);
+				controller.createSpace("tennisplatz", 3);
+
+				controller.createPerson("one@mail", "one", "1");
+				controller.createPerson("two@mail", "two", "2");
+				controller.createPerson("three@mail", "three", "3");
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {

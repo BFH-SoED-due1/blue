@@ -28,7 +28,7 @@ public class ControllerTest {
 	public void testAtenticationNull() throws InstantiationException, IllegalAccessException {
 		Controller c =  new Controller();
 		c.createPerson("muster@muster.ch", "max", "123");
-		Person p = c.authentication("max", "123");
+		Person p = c.authentication("ma", "123");
 		assertNull(p);
 		c.close();
 	}
