@@ -25,20 +25,20 @@ import ch.bfh.blue.requirements.Reservation;
 public class Mieter implements Person {
 
 	@Id @GeneratedValue
-	private int id;
+	private int m_id;
 
 	@Embedded
 	private UserDataImpl data;
 
-	@OneToMany(targetEntity=ReservationImpl.class)
+	@OneToMany(targetEntity=ReservationImpl.class, mappedBy="owner")
 	private List<Reservation> personReservations = new ArrayList<>();
 
 	public int getId() {
-		return id;
+		return m_id;
 	}
 
 	public void setId(int id) {
-		this.id = id;
+		this.m_id = id;
 	}
 
 	public void setData(UserDataImpl data) {

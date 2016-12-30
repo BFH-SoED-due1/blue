@@ -8,18 +8,18 @@
 package ch.bfh.blue.UI;
 
 import javax.servlet.annotation.WebServlet;
+
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.CssLayout;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.Button.ClickEvent;
 
-import ch.bfh.blue.requirements.AbstractPersistencManager;
 import ch.bfh.blue.service.Controller;
 
 /**
@@ -34,7 +34,7 @@ import ch.bfh.blue.service.Controller;
 @SuppressWarnings("serial")
 @Theme("mytheme")
 public class MainUI extends UI {
-	
+
 	private Controller controller;
 
 	@Override
@@ -45,15 +45,15 @@ public class MainUI extends UI {
 		final Navigator navigator;
 
 			try {
-				controller = Controller.getInstance();
+				controller = new Controller();
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
 				e.printStackTrace();
 			}
-		
-			
-			
+
+
+
 		/*
 		 * is called upon closing of the UI
 		 * do cleanup stuff here
@@ -65,7 +65,7 @@ public class MainUI extends UI {
 		    	//controller.close();
 		    }
 		});
-		
+
 		navigator = new Navigator(this, viewLayout);
 		navigator.addView("", new HomeView(controller));
 		navigator.addView("home", new HomeView(controller));
@@ -93,8 +93,8 @@ public class MainUI extends UI {
 			}
 		});
 	}
-	
-	
+
+
 	/**
 	 * adds a few rooms to the db to test the functionality
 	 */
@@ -103,7 +103,7 @@ public class MainUI extends UI {
 		controller.createSpace("garage", 2);
 		controller.createSpace("tennisplatz", 3);
 	}
-	
+
 	/**
 	 * creates a few persons with username and pw to test the functionality
 	 */
@@ -112,14 +112,14 @@ public class MainUI extends UI {
 		controller.createPerson("two@mail", "two", "2");
 		controller.createPerson("three@mail", "three", "3");
 	}
-	
+
 	/**
 	 * creates a few reservations to test the functionality
 	 */
 	private void createDemoReservations(){
-		
+
 	}
-	
+
 
 	// testkommentar
 	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

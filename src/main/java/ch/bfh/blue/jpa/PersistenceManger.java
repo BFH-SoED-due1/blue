@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
@@ -78,6 +79,7 @@ public class PersistenceManger extends AbstractPersistencManager {
 		space.addReservation(r);
 		em.getTransaction().commit();
 		return r;
+		
 	}
 
 	@Override
@@ -98,12 +100,12 @@ public class PersistenceManger extends AbstractPersistencManager {
 				Person.class);
 		query.setParameter(1, name);
 		query.setParameter(2, pw);
-		query.setMaxResults(1);
-		List<Person> pList = query.getResultList();
-		if(pList==null||pList.isEmpty()){
+		try {
+			return query.getSingleResult();
+		} catch (NoResultException e ) {
 			return null;
 		}
-		return pList.get(0);
+
 	}
 
 	@Override

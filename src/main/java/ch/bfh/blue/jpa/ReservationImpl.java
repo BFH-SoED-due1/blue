@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import ch.bfh.blue.requirements.Person;
 import ch.bfh.blue.requirements.Reservation;
@@ -26,10 +26,10 @@ public class ReservationImpl implements Reservation {
 	@Id @GeneratedValue
 	private int id;
 
-	@OneToOne(targetEntity=SpaceImpl.class)
+	@ManyToOne(targetEntity=SpaceImpl.class)
 	private Space rentSpace;
 
-	@OneToOne(targetEntity=Mieter.class)
+	@ManyToOne(targetEntity=Mieter.class)
 	private Person owner;
 
 	private Timestamp stStamp,enStamp;
