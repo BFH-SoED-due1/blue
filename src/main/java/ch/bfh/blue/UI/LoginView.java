@@ -3,7 +3,6 @@ package ch.bfh.blue.UI;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.FormLayout;
@@ -24,16 +23,16 @@ import ch.bfh.blue.service.Controller;
 public class LoginView extends FormLayout implements View  {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private Navigator navigator;
 	private Controller controller;
-	
+
 	//Constants
 	private static final String LOGIN_ERR_INVALID_DATA = "Username or Password are incorrect.";
-	
+
 	//Layouts which contain components
 	private final HorizontalLayout buttonBar = new HorizontalLayout();
 
@@ -67,9 +66,9 @@ public class LoginView extends FormLayout implements View  {
 
 		buttonBar.addComponents(homeBtn, loginBtn);
 		buttonBar.setMargin(true);
-		buttonBar.setSpacing(true);	
+		buttonBar.setSpacing(true);
 	}
-	
+
 	/**
 	 * configure handlers and settings for the buttons here
 	 */
@@ -80,7 +79,7 @@ public class LoginView extends FormLayout implements View  {
 			password = passwd.getValue();
 			Person pers = controller.authentication(username, password);
 			if(pers != null){
-				controller.setCurrentPerson(pers);
+				getSession().setAttribute("user", pers);
 				navigator.navigateTo("availableSpaces");
 			} else {
 				message.setValue(LOGIN_ERR_INVALID_DATA);

@@ -17,6 +17,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
+import ch.bfh.blue.requirements.Person;
 import ch.bfh.blue.requirements.Space;
 import ch.bfh.blue.service.Controller;
 
@@ -107,8 +108,10 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 	private void configureButtons(){
 		
 		reservationBtn.addClickListener(e->{
-			controller.createReservation(title.getValue(), controller.getCurrentPerson(), startDate, endDate, (Space)grid.getSelectedRow());
-			notif.setCaption(RESERVATION_SUCCESS+"("+title.getValue()+", "+grid.getSelectedRow()+", from"+startDate+" to "+endDate);
+			Person p = (Person)getSession().getAttribute("user");
+			Space spc = (Space)grid.getSelectedRow();
+			controller.createReservation(title.getValue(), p, startDate, endDate, spc);
+			notif.setCaption(RESERVATION_SUCCESS+"("+title.getValue()+", "+spc+", from"+startDate+" to "+endDate);
 			notif.show(Page.getCurrent());
 			refreshGrid();			
 		});
@@ -130,9 +133,8 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 	 */
 	@Override
 	public void enter(ViewChangeEvent event) {
-		Date[] dates = controller.getCurrentDate();
-		startDate = dates[0];
-		endDate = dates[1];
+		startDate = (Date)getSession().getAttribute("startDate");
+		endDate = (Date)getSession().getAttribute("endDate");
 		refreshGrid();
 		if(!spaces.isEmpty()&&firstEnter){
 			firstEnter = false;

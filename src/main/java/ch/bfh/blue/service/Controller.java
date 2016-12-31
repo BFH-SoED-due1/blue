@@ -14,10 +14,6 @@ import ch.bfh.blue.requirements.UserData;
 public class Controller {
 	private AbstractPersistencManager pm;
 
-	private Person currentPerson = null;
-	private Space currentSpace = null;
-	private Reservation currentReservation = null;
-	private Date[] currentDate = null;
 
 
 	public Controller() throws InstantiationException, IllegalAccessException {
@@ -56,38 +52,6 @@ public class Controller {
 		return pm.getAllSpaces();
 	}
 
-//********** setters and getters for current values **********
-	public Person getCurrentPerson() {
-		return currentPerson;
-	}
-
-	public void setCurrentPerson(Person currentPerson) {
-		this.currentPerson = currentPerson;
-	}
-
-	public Space getCurrentSpace() {
-		return currentSpace;
-	}
-
-	public void setCurrentSpace(Space currentSpace) {
-		this.currentSpace = currentSpace;
-	}
-
-	public Reservation getCurrentReservation() {
-		return currentReservation;
-	}
-
-	public void setCurrentReservation(Reservation currentReservation) {
-		this.currentReservation = currentReservation;
-	}
-
-	public Date[] getCurrentDate() {
-		return currentDate;
-	}
-
-	public void setCurrentDate(Date startDate, Date endDate) {
-		this.currentDate = new Date[]{startDate, endDate};
-	}
 
 	/**
 	 * calls the close function of the persistence manager
