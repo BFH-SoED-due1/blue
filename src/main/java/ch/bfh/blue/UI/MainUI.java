@@ -7,6 +7,7 @@
  */
 package ch.bfh.blue.UI;
 
+import javax.persistence.PersistenceContext;
 import javax.servlet.annotation.WebServlet;
 
 import com.vaadin.annotations.Theme;
@@ -46,13 +47,6 @@ public class MainUI extends UI {
 
 			try {
 				controller = new Controller();
-				controller.createSpace("aula", 1);
-				controller.createSpace("garage", 2);
-				controller.createSpace("tennisplatz", 3);
-
-				controller.createPerson("one@mail", "one", "1");
-				controller.createPerson("two@mail", "two", "2");
-				controller.createPerson("three@mail", "three", "3");
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
@@ -69,11 +63,11 @@ public class MainUI extends UI {
 		    @Override
 		    public void detach(DetachEvent event) {
 		    	//during work
-		    	controller.close();
+		    	//controller.close();
 		    }
 		});
-		
-		
+
+
 
 		navigator = new Navigator(this, viewLayout);
 		navigator.addView("", new HomeView(controller));
@@ -104,36 +98,14 @@ public class MainUI extends UI {
 	}
 
 
-	/**
-	 * adds a few rooms to the db to test the functionality
-	 */
-	private void createDemoRooms(){
-		controller.createSpace("aula", 1);
-		controller.createSpace("garage", 2);
-		controller.createSpace("tennisplatz", 3);
-	}
-
-	/**
-	 * creates a few persons with username and pw to test the functionality
-	 */
-	private void createDemoPersons(){
-		controller.createPerson("one@mail", "one", "1");
-		controller.createPerson("two@mail", "two", "2");
-		controller.createPerson("three@mail", "three", "3");
-	}
-
-	/**
-	 * creates a few reservations to test the functionality
-	 */
-	private void createDemoReservations(){
-
-	}
-
-
 	// testkommentar
 	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
 	@VaadinServletConfiguration(ui = MainUI.class, productionMode = false)
+	@PersistenceContext(name="persistence/em",unitName="srs-pu")
 	public static class MyUIServlet extends VaadinServlet {
+
 	}
+
+
 
 }

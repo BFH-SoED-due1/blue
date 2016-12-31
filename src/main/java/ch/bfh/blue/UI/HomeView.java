@@ -25,7 +25,7 @@ public class HomeView extends FormLayout implements View {
 
 	//Constants
 	private static final String REGISTER_SUCCESS = "Registration successful, please login.";
-	
+
 	//Labels and Components
 	private final Label label = new Label();
 	private final Label lLabel = new Label();
@@ -34,10 +34,11 @@ public class HomeView extends FormLayout implements View {
 	//Buttons
 	private final Button loginBtn = new Button("Login here");
 	private final Button registerBtn = new Button("Register here");
+	private final Button initBtn = new Button("Take default Database");
 
 	public HomeView(Controller contr) {
 		controller = contr;
-		for (Component c : new Component[] { label, lLabel, loginBtn, rLabel, registerBtn})
+		for (Component c : new Component[] { label, lLabel, loginBtn, rLabel, registerBtn,initBtn})
 			this.addComponent(c);
 		configureUI();
 		configureButtons();
@@ -49,8 +50,9 @@ public class HomeView extends FormLayout implements View {
 		label.setStyleName("mainCaption");
 		lLabel.setValue("To use the SRS, please login.");
 		rLabel.setValue("New here?\n Register a new Account.");
+		initBtn.setDisableOnClick(true);
 	}
-	
+
 	//configure handlers and settings for the buttons
 	private void configureButtons(){
 		loginBtn.addClickListener(e -> {
@@ -59,6 +61,11 @@ public class HomeView extends FormLayout implements View {
 
 		registerBtn.addClickListener(e -> {
 			navigator.navigateTo("register");
+		});
+
+		initBtn.addClickListener(e -> {
+			createDemoPersons();
+			createDemoRooms();
 		});
 	}
 
@@ -71,6 +78,30 @@ public class HomeView extends FormLayout implements View {
 			notif.setDelayMsec(3500);
 			notif.show(Page.getCurrent());
 		}
+	}
+	/**
+	 * adds a few rooms to the db to test the functionality
+	 */
+	private void createDemoRooms(){
+		controller.createSpace("aula", 1);
+		controller.createSpace("garage", 2);
+		controller.createSpace("tennisplatz", 3);
+	}
+
+	/**
+	 * creates a few persons with username and pw to test the functionality
+	 */
+	private void createDemoPersons(){
+		controller.createPerson("one@mail", "one", "1");
+		controller.createPerson("two@mail", "two", "2");
+		controller.createPerson("three@mail", "three", "3");
+	}
+
+	/**
+	 * creates a few reservations to test the functionality
+	 */
+	private void createDemoReservations(){
+
 	}
 
 }

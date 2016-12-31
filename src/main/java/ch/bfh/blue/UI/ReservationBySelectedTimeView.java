@@ -17,6 +17,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
+import ch.bfh.blue.requirements.Person;
 import ch.bfh.blue.requirements.Space;
 import ch.bfh.blue.service.Controller;
 
@@ -28,25 +29,25 @@ import ch.bfh.blue.service.Controller;
  */
 
 public class ReservationBySelectedTimeView extends VerticalLayout implements View {
-	
+
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private Navigator navigator;
 	Controller controller;
-	
+
 	//Constants
 	private static final String DATE_FORMAT = "dd.MM.yy kk:mm";
 	//Constants
 		private static final String RESERVATION_SUCCESS =
 				"You have successfully made a reservation.";
-	
+
 	// Layouts which contain components
 	private final HorizontalLayout navBtnHL = new HorizontalLayout();
 	private final HorizontalLayout resHL = new HorizontalLayout();
-	
+
 	//Labels and Components
 	String dates = new String();
 	private Date startDate;
@@ -57,12 +58,12 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 	private Notification notif = new Notification("",Notification.Type.WARNING_MESSAGE);
 	private Boolean firstEnter = true;
 
-	
+
 	//Buttons
 	private final Button reservationBtn = new Button("Make reservation");
 	private final Button logoutBtn = new Button("Logout");
 	private final Button backBtn = new Button("Back");
-	
+
 	public ReservationBySelectedTimeView(Controller contr){
 		controller = contr;
 		for (Component c : new Component[] {heading, grid, resHL, navBtnHL})
@@ -71,7 +72,7 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 		configureUI();
 		configureButtons();
 	}
-	
+
 	/**
 	 * configure all the settings for the different UI components here
 	 */
@@ -83,31 +84,32 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 		resHL.setSpacing(true);
 		configureGrid();
 	}
-	
+
 	private void configureGrid(){
 		grid.setWidth("300px");
 		grid.setHeight("400px");
 	}
-	
+
 	/**
 	 * configure handlers and settings for the buttons here
 	 */
 	private void configureButtons(){
-		
 		reservationBtn.addClickListener(e->{
-			controller.createReservation(title.getValue(), controller.getCurrentPerson(), startDate, endDate, (Space)grid.getSelectedRow());
-			notif.setCaption(RESERVATION_SUCCESS+"("+title.getValue()+", "+grid.getSelectedRow()+", from"+startDate+" to "+endDate);
+			Person p = (Person)getSession().getAttribute("user");
+			Space spc = (Space)grid.getSelectedRow();
+			controller.createReservation(title.getValue(), p, startDate, endDate, spc);
+			notif.setCaption(RESERVATION_SUCCESS+"("+title.getValue()+", "+spc+", from"+startDate+" to "+endDate);
 			notif.show(Page.getCurrent());
 		});
-		
+
 		logoutBtn.addClickListener(e -> {
 			navigator.navigateTo("home");
 		});
-		
+
 		backBtn.addClickListener(e -> {
 			navigator.navigateTo("availableSpaces");
 		});
-		
+
 		navBtnHL.addComponents(backBtn, logoutBtn);
 		navBtnHL.setSpacing(true);
 	}
@@ -117,9 +119,8 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 	 */
 	@Override
 	public void enter(ViewChangeEvent event) {
-		Date[] dates = controller.getCurrentDate();
-		startDate = dates[0];
-		endDate = dates[1];
+		startDate = (Date)getSession().getAttribute("startDate");
+		endDate = (Date)getSession().getAttribute("endDate");
 		List<Space> spaces = controller.getSpaceOnTime(startDate, endDate);
 		grid.setContainerDataSource(new BeanItemContainer<>(Space.class, spaces));
 		if(!spaces.isEmpty()&&firstEnter){
@@ -127,7 +128,6 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 		grid.removeColumn("reservations");
 		}
 		navigator = event.getNavigator();
-		
 	}
 
 }
