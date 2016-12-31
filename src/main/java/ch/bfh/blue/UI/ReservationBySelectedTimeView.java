@@ -39,23 +39,26 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 	
 	//Constants
 	private static final String DATE_FORMAT = "dd.MM.yy kk:mm";
-	//Constants
-		private static final String RESERVATION_SUCCESS =
+	private static final String RESERVATION_SUCCESS =
 				"You have successfully made a reservation.";
 	
 	// Layouts which contain components
 	private final HorizontalLayout navBtnHL = new HorizontalLayout();
 	private final HorizontalLayout resHL = new HorizontalLayout();
+	private final VerticalLayout dateVL = new VerticalLayout();
 	
 	//Labels and Components
 	String dates = new String();
 	private Date startDate;
 	private Date endDate;
 	private final Label heading = new Label();
+	private final Label startDateLabel = new Label();
+	private final Label endDateLabel = new Label();
 	private final Grid grid = new Grid();
 	private final TextField title = new TextField();
 	private Notification notif = new Notification("",Notification.Type.WARNING_MESSAGE);
 	private Boolean firstEnter = true;
+	List<Space> spaces;
 
 	
 	//Buttons
@@ -79,14 +82,23 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 		this.setSpacing(true);
 		heading.setValue("Available rooms for the selected timeframe:");
 		title.setInputPrompt("Enter title");
-		resHL.addComponents(title, reservationBtn);
+		resHL.addComponents(title, reservationBtn, dateVL);
 		resHL.setSpacing(true);
+		dateVL.addComponents(startDateLabel,endDateLabel);
 		configureGrid();
 	}
 	
 	private void configureGrid(){
 		grid.setWidth("300px");
 		grid.setHeight("400px");
+	}
+	
+	/**
+	 * loads free rooms from the db and refreshes the grid
+	 */
+	private void refreshGrid(){
+		spaces = controller.getSpaceOnTime(startDate, endDate);
+		grid.setContainerDataSource(new BeanItemContainer<>(Space.class, spaces));
 	}
 	
 	/**
@@ -98,6 +110,7 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 			controller.createReservation(title.getValue(), controller.getCurrentPerson(), startDate, endDate, (Space)grid.getSelectedRow());
 			notif.setCaption(RESERVATION_SUCCESS+"("+title.getValue()+", "+grid.getSelectedRow()+", from"+startDate+" to "+endDate);
 			notif.show(Page.getCurrent());
+			refreshGrid();			
 		});
 		
 		logoutBtn.addClickListener(e -> {
@@ -120,14 +133,14 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 		Date[] dates = controller.getCurrentDate();
 		startDate = dates[0];
 		endDate = dates[1];
-		List<Space> spaces = controller.getSpaceOnTime(startDate, endDate);
-		grid.setContainerDataSource(new BeanItemContainer<>(Space.class, spaces));
+		refreshGrid();
 		if(!spaces.isEmpty()&&firstEnter){
 			firstEnter = false;
 		grid.removeColumn("reservations");
 		}
+		startDateLabel.setValue("From: "+startDate);
+		  endDateLabel.setValue("\tTo\t: "+endDate);
 		navigator = event.getNavigator();
-		
 	}
 
 }

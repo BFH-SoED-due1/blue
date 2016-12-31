@@ -40,19 +40,13 @@ public class MainUI extends UI {
 	@Override
 	protected void init(VaadinRequest vaadinRequest) {
 		final VerticalLayout layout = new VerticalLayout();
-		final CssLayout topBar = new CssLayout();
 		final CssLayout viewLayout = new CssLayout();
 		final Navigator navigator;
 
 			try {
 				controller = new Controller();
-				controller.createSpace("aula", 1);
-				controller.createSpace("garage", 2);
-				controller.createSpace("tennisplatz", 3);
-
-				controller.createPerson("one@mail", "one", "1");
-				controller.createPerson("two@mail", "two", "2");
-				controller.createPerson("three@mail", "three", "3");
+				createDemoRooms();
+				createDemoPersons();
 			} catch (InstantiationException e) {
 				e.printStackTrace();
 			} catch (IllegalAccessException e) {
@@ -73,8 +67,6 @@ public class MainUI extends UI {
 		    }
 		});
 		
-		
-
 		navigator = new Navigator(this, viewLayout);
 		navigator.addView("", new HomeView(controller));
 		navigator.addView("home", new HomeView(controller));
@@ -84,25 +76,10 @@ public class MainUI extends UI {
 		navigator.addView("reservationBySelectedRoom", new ReservationBySelectedRoomView(controller));
 		navigator.addView("reservationBySelectedTime", new ReservationBySelectedTimeView(controller));
 
-		for (String s : new String[] { "home" }) {
-			topBar.addComponent(this.createNavigationButton(s, navigator));
-		}
-
 		layout.addComponent(viewLayout);
 		layout.setMargin(true);
 		setContent(layout);
-
 	}
-
-	private Button createNavigationButton(String state, Navigator navigator) {
-		return new Button(state, new Button.ClickListener() {
-			@Override
-			public void buttonClick(ClickEvent event) {
-				navigator.navigateTo(state);
-			}
-		});
-	}
-
 
 	/**
 	 * adds a few rooms to the db to test the functionality
