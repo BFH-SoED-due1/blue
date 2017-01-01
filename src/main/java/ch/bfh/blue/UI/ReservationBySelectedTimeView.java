@@ -176,24 +176,6 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 		});
 	}
 
-	/**
-	 * this method makes sure different time frames of the same space can't
-	 * overlap returns true if there is NO overlapping
-	 */
-	private boolean isNotOverlaping() {
-		reservations = currentSpace.getReservations();
-		boolean overlapLock = false;
-		for (Reservation res : reservations) {
-			Date st = res.getStStamp();
-			Date en = res.getEnStamp();
-			if (startDate.compareTo(en) >= 0 && endDate.compareTo(st) <= 0) {
-				overlapLock = true;
-			} else {
-				overlapLock = false;
-			}
-		}
-		return overlapLock;
-	}
 
 	/**
 	 * checks if a user is logged in

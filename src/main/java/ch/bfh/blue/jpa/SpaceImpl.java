@@ -8,6 +8,7 @@
 package ch.bfh.blue.jpa;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,12 +17,16 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
+import com.vaadin.data.Container.Sortable;
+import com.vaadin.data.Item;
+import com.vaadin.data.Property;
+
 import ch.bfh.blue.requirements.Reservation;
 import ch.bfh.blue.requirements.Space;
 
 @Entity
 @NamedQuery(name="SpaceImpl.findAll", query="SELECT s FROM SpaceImpl s")
-public class SpaceImpl implements Space{
+public class SpaceImpl implements Comparable<SpaceImpl>, Space{
 
 	@Id
 	private int spaceNumber;
@@ -39,7 +44,6 @@ public class SpaceImpl implements Space{
 		this.name=name;
 		this.spaceNumber = spaceNumber;
 	}
-
 
 
 	@Override
@@ -67,6 +71,7 @@ public class SpaceImpl implements Space{
 	}
 	
 
+	@Override
 	public String toString(){
 		return name;
 	}
@@ -83,9 +88,25 @@ public class SpaceImpl implements Space{
 		this.name = name;
 	}
 
-
 	public void setReservations(List<Reservation> reservations) {
 		this.spaceReservations = reservations;
 	}
-
+	
+	
+	public int compareTo(SpaceImpl s){
+		String thisName = this.getName();
+		String compareName = s.getName();
+		return	thisName.compareTo(compareName);
+	}
+	
+	
+	public boolean equals(SpaceImpl s){
+		return this.compareTo(s) == 0;
+		 
+	}
+	
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

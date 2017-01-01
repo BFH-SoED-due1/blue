@@ -51,7 +51,6 @@ public class Mieter implements Person {
 	}
 
 
-
 	public Mieter() {
 
 	}
@@ -84,6 +83,10 @@ public class Mieter implements Person {
 		}
 	}
 
+	@Override
+	public String toString(){
+		return this.getData().getUserName();
+	}
 
 
 }

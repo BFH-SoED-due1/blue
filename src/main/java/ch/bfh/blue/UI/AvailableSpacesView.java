@@ -181,7 +181,7 @@ public class AvailableSpacesView extends VerticalLayout implements View {
 	 * has already made
 	 */
 	private void configureReservationGrid() {
-		grid.setWidth("1000");
+		grid.setWidth("800");
 		grid.setHeight("300");
 		grid.setReadOnly(true);
 	}
@@ -192,6 +192,11 @@ public class AvailableSpacesView extends VerticalLayout implements View {
 	private void refreshGrid() {
 		reservations = currentPerson.getReservations();
 		grid.setContainerDataSource(new BeanItemContainer<>(Reservation.class, reservations));
+		grid.setColumnOrder("title", "space", "stStamp", "enStamp");
+		if (grid.getColumn("owner") != null) {
+			grid.removeColumn("owner");
+		}
+
 	}
 
 	/**

@@ -9,6 +9,7 @@ package ch.bfh.blue.requirements;
 
 import java.util.List;
 
+
 public interface Space {
 	public String getName();
 
@@ -17,6 +18,5 @@ public interface Space {
 	public void addReservation(Reservation res);
 
 	public void removeReservation(Reservation res);
-
 
 }
