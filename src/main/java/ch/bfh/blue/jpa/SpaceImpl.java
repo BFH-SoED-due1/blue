@@ -8,19 +8,12 @@
 package ch.bfh.blue.jpa;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
-
-import com.vaadin.data.Container.Sortable;
-import com.vaadin.data.Item;
-import com.vaadin.data.Property;
-
 import ch.bfh.blue.requirements.Reservation;
 import ch.bfh.blue.requirements.Space;
 

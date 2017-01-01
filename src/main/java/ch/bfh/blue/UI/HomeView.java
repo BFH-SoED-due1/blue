@@ -3,14 +3,10 @@ package ch.bfh.blue.UI;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.Page;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.Notification;
-
-import ch.bfh.blue.requirements.Space;
 import ch.bfh.blue.service.Controller;
 
 /**
@@ -22,6 +18,11 @@ import ch.bfh.blue.service.Controller;
 
 public class HomeView extends FormLayout implements View {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Navigator navigator;
 	private Controller controller;
 
@@ -89,12 +90,6 @@ public class HomeView extends FormLayout implements View {
 		controller.createPerson("three@mail", "three", "3");
 	}
 
-	/**
-	 * creates a few reservations to test the functionality
-	 */
-	private void createDemoReservations() {
-
-	}
 
 	@Override
 	public void enter(ViewChangeEvent event) {

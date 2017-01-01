@@ -1,11 +1,8 @@
 package ch.bfh.blue.UI;
 
-import java.awt.Container;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-
-import com.vaadin.data.util.BeanContainer;
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
@@ -23,9 +20,6 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.components.calendar.event.BasicEvent;
-
-import ch.bfh.blue.jpa.ReservationImpl;
-import ch.bfh.blue.jpa.SpaceImpl;
 import ch.bfh.blue.requirements.Person;
 import ch.bfh.blue.requirements.Reservation;
 import ch.bfh.blue.requirements.Space;

@@ -16,9 +16,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
-
 import ch.bfh.blue.requirements.Person;
-import ch.bfh.blue.requirements.Reservation;
 import ch.bfh.blue.requirements.Space;
 import ch.bfh.blue.service.Controller;
 
@@ -63,8 +61,6 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 	List<Space> spaces;
 	boolean gridLock = false;
 	boolean titleLock = false;
-	private Space currentSpace;
-	private List<Reservation> reservations;
 	private Person currentPerson;
 
 	// Buttons
@@ -201,7 +197,6 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 	public void enter(ViewChangeEvent event) {
 		navigator = event.getNavigator();
 		if(isLoggedIn()){
-		currentSpace = (Space) getSession().getAttribute("space");
 		startDate = (Date) getSession().getAttribute("startDate");
 		endDate = (Date) getSession().getAttribute("endDate");
 		refreshGrid();
