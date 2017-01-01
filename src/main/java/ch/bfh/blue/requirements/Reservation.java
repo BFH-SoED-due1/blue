@@ -7,6 +7,8 @@
  */
 package ch.bfh.blue.requirements;
 
+import java.sql.Timestamp;
+
 public interface Reservation {
 
 	public void setSpace(Space s1);
@@ -16,5 +18,16 @@ public interface Reservation {
 	public void setOwner(Person p);
 
 	public Person getOwner();
+	
+	public Timestamp getStStamp();
 
+	public void setStStamp(Timestamp stStamp);
+	
+	public Timestamp getEnStamp();
+
+	public void setEnStamp(Timestamp enStamp);
+	
+	public String getTitle();
+
+	public void setTitle(String title) ;
 }

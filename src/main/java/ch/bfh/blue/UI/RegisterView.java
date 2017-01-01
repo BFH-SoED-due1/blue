@@ -35,6 +35,8 @@ public class RegisterView extends FormLayout implements View {
 	//Constants
 	private static final String REGISTRATION_FAIL_PW_MISSMATCH =
 			"Your Password and your retyped Password don't match, try again.";
+	private static final String REGISTRATION_SUCCESS =
+			"Registration successful, please login.";
 	
 	//Layouts which contain components
 	private final HorizontalLayout buttonBar = new HorizontalLayout();
@@ -87,7 +89,10 @@ public class RegisterView extends FormLayout implements View {
 		registerBtn.addClickListener(e -> {
 				if(passwd.getValue().equals(retypepw.getValue())){
 					controller.createPerson(email.getValue(), user.getValue(),passwd.getValue());
-					navigator.navigateTo("home/regOk");
+					navigator.navigateTo("home");
+					Notification notif = new Notification(REGISTRATION_SUCCESS,Notification.Type.WARNING_MESSAGE);
+					notif.setDelayMsec(3500);
+					notif.show(Page.getCurrent());
 				} else {
 					notif.setCaption(REGISTRATION_FAIL_PW_MISSMATCH);
 					notif.show(Page.getCurrent());

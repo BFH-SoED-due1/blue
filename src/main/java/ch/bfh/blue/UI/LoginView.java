@@ -3,11 +3,13 @@ package ch.bfh.blue.UI;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.server.Page;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
+import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 
@@ -40,7 +42,7 @@ public class LoginView extends FormLayout implements View  {
 	private final Label header = new Label();
 	private final TextField user = new TextField();
 	private final PasswordField passwd = new PasswordField();
-	private final Label message = new Label();
+	Notification notif = new Notification("",Notification.Type.WARNING_MESSAGE);
 
 	//Buttons
 	private final Button loginBtn = new Button("Login");
@@ -48,7 +50,7 @@ public class LoginView extends FormLayout implements View  {
 
 	public LoginView(Controller contr) {
 		controller = contr;
-		for (Component c : new Component[] { header, user, passwd, buttonBar, message })
+		for (Component c : new Component[] { header, user, passwd, buttonBar })
 			this.addComponent(c);
 		configureUI();
 		configureButtons();
@@ -63,7 +65,7 @@ public class LoginView extends FormLayout implements View  {
 		user.setInputPrompt("Enter username");
 		passwd.setCaption("Password");
 		passwd.setInputPrompt("Enter password");
-
+		notif.setDelayMsec(3500);
 		buttonBar.addComponents(homeBtn, loginBtn);
 		buttonBar.setMargin(true);
 		buttonBar.setSpacing(true);
@@ -82,7 +84,8 @@ public class LoginView extends FormLayout implements View  {
 				getSession().setAttribute("user", pers);
 				navigator.navigateTo("availableSpaces");
 			} else {
-				message.setValue(LOGIN_ERR_INVALID_DATA);
+				notif.setCaption(LOGIN_ERR_INVALID_DATA);
+				notif.show(Page.getCurrent());
 			}
 		});
 
@@ -98,7 +101,6 @@ public class LoginView extends FormLayout implements View  {
 	public void enter(ViewChangeEvent event) {
 		user.clear();
 		passwd.clear();
-		message.setValue("");
 		navigator = event.getNavigator();
 	}
 

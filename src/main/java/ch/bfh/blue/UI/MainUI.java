@@ -44,28 +44,28 @@ public class MainUI extends UI {
 		final CssLayout viewLayout = new CssLayout();
 		final Navigator navigator;
 
-			try {
-				controller = new Controller();
-			} catch (InstantiationException e) {
-				e.printStackTrace();
-			} catch (IllegalAccessException e) {
-				e.printStackTrace();
-			}
-
-
+		getSession().setAttribute("databaseLock", true);
+		try {
+			controller = new Controller();
+		} catch (InstantiationException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		
+		getSession().setAttribute("user", null);
 
 		/*
-		 * is called upon closing of the UI
-		 * do cleanup stuff here
+		 * is called upon closing of the UI do cleanup stuff here
 		 */
 		addDetachListener(new DetachListener() {
-		    @Override
-		    public void detach(DetachEvent event) {
-		    	//during work
-		    	//controller.close();
-		    }
+			@Override
+			public void detach(DetachEvent event) {
+				// during work
+				controller.close();
+			}
 		});
-		
+
 		navigator = new Navigator(this, viewLayout);
 		navigator.addView("", new HomeView(controller));
 		navigator.addView("home", new HomeView(controller));
@@ -83,7 +83,7 @@ public class MainUI extends UI {
 	// testkommentar
 	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)
 	@VaadinServletConfiguration(ui = MainUI.class, productionMode = false)
-	@PersistenceContext(name="persistence/em",unitName="srs-pu")
+	@PersistenceContext(name = "persistence/em", unitName = "srs-pu")
 	public static class MyUIServlet extends VaadinServlet {
 	}
 
