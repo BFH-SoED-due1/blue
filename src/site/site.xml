@@ -32,8 +32,10 @@
             <item name="User Stories" href="doc/UserStories.pdf"/>
             <item name="Domain Model" href="doc/DomainDoc.pdf"/>
             <item name="Context View" href="context_view.html"/>
-            <item name="Backlog" href="doc/Backlog.pdf"/>
-            <item name="Backlog finished items" href="doc/BacklogFinished.pdf"/>
+            <item name="Sequence diagram" href="doc/SequenzDiagramm.pdf"/>
+            <item name="Product Backlog" href="doc/ProductBacklog.pdf"/>
+            <item name="Backlog items" href="doc/SprintBacklogItems.pdf"/>
+            <item name="Backlog finished items" href="doc/FinishedSprintBacklogItems.pdf"/>
             <!--
             <item name="System Sequence Diagram" href="system_sequence_diagram.html" />
             <item name="Detailed Design Document" href="detailed_design_document.html" />
