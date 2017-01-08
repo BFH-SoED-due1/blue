@@ -10,16 +10,18 @@ package ch.bfh.blue.jpa;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+
 import ch.bfh.blue.requirements.Reservation;
 import ch.bfh.blue.requirements.Space;
 
 @Entity
 @NamedQuery(name="SpaceImpl.findAll", query="SELECT s FROM SpaceImpl s")
-public class SpaceImpl implements Comparable<SpaceImpl>, Space{
+public class SpaceImpl implements Space{
 
 	@Id
 	private int spaceNumber;
@@ -44,16 +46,21 @@ public class SpaceImpl implements Comparable<SpaceImpl>, Space{
 		return this.name;
 	}
 
+
+
 	@Override
 	public List<Reservation> getReservations() {
 		return Collections.unmodifiableList(this.spaceReservations);
 	}
+
+
 
 	@Override
 	public void addReservation(Reservation res) {
 		this.spaceReservations.add(res);
 
 	}
+
 
 	@Override
 	public void removeReservation(Reservation res) {
@@ -62,21 +69,24 @@ public class SpaceImpl implements Comparable<SpaceImpl>, Space{
 		}
 
 	}
-	
+
 
 	@Override
 	public String toString(){
 		return name;
 	}
 
+	@Override
 	public int getSpaceNumber() {
 		return spaceNumber;
 	}
 
+	@Override
 	public void setSpaceNumber(int spaceNumber) {
 		this.spaceNumber = spaceNumber;
 	}
 
+	@Override
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -84,22 +94,5 @@ public class SpaceImpl implements Comparable<SpaceImpl>, Space{
 	public void setReservations(List<Reservation> reservations) {
 		this.spaceReservations = reservations;
 	}
-	
-	
-	public int compareTo(SpaceImpl s){
-		String thisName = this.getName();
-		String compareName = s.getName();
-		return	thisName.compareTo(compareName);
-	}
-	
-	
-	public boolean equals(SpaceImpl s){
-		return this.compareTo(s) == 0;
-		 
-	}
-	
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
+
 }

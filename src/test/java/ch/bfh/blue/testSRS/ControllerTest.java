@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2016 Berner Fachhochschule, Switzerland.
+ *
+ * Project Smart Reservation System.
+ *
+ * Distributable under GPL license. See terms of license at gnu.org.
+ */
 package ch.bfh.blue.testSRS;
 
 import static org.junit.Assert.assertEquals;
@@ -63,7 +70,7 @@ public class ControllerTest {
 		assertEquals(s3,spList.get(1));
 		c.close();
 	}
-	
+
 	@Test
 	public void testGetSpaceOnTimeNoReservation() throws InstantiationException, IllegalAccessException {
 		Controller c =  new Controller();
@@ -93,6 +100,20 @@ public class ControllerTest {
 		}
 		c.close();
 	}
+
+	@Test
+	public void testGetAllSpaces() throws InstantiationException, IllegalAccessException {
+		Controller c =  new Controller();
+		Space s1 = c.createSpace("s1", 521);
+		Space s2 = c.createSpace("s2", 522);
+		Space s3 = c.createSpace("s3", 523);
+		List<Space> sList = c.getAllspaces();
+		assertEquals(s1, sList.get(0));
+		assertEquals(s2, sList.get(1));
+		assertEquals(s3, sList.get(2));
+		c.close();
+	}
+
 
 
 

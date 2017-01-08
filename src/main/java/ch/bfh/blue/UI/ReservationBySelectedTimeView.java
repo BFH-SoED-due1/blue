@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2016 Berner Fachhochschule, Switzerland.
+ *
+ * Project Smart Reservation System.
+ *
+ * Distributable under GPL license. See terms of license at gnu.org.
+ */
 package ch.bfh.blue.UI;
 
 import java.util.Date;
@@ -16,6 +23,7 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
+
 import ch.bfh.blue.requirements.Person;
 import ch.bfh.blue.requirements.Space;
 import ch.bfh.blue.service.Controller;
@@ -23,7 +31,7 @@ import ch.bfh.blue.service.Controller;
 /**
  * After selecting a timeframe, this view will show all the available rooms for
  * this timeframe
- * 
+ *
  * @author SRS-Team
  *
  */
@@ -31,12 +39,12 @@ import ch.bfh.blue.service.Controller;
 public class ReservationBySelectedTimeView extends VerticalLayout implements View {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
 	private Navigator navigator;
-	Controller controller;
+	private Controller controller;
 
 	// Constants
 	private static final String RESERVATION_SUCCESS = "You have successfully made a reservation.";
@@ -49,7 +57,7 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 	private final VerticalLayout dateVL = new VerticalLayout();
 
 	// Labels and Components
-	String dates = new String();
+	private String dates = new String();
 	private Date startDate;
 	private Date endDate;
 	private final Label heading = new Label();
@@ -58,9 +66,9 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 	private final Grid grid = new Grid();
 	private final TextField restitle = new TextField();
 	private Notification notif = new Notification("", Notification.Type.WARNING_MESSAGE);
-	List<Space> spaces;
-	boolean gridLock = false;
-	boolean titleLock = false;
+	private List<Space> spaces;
+	private boolean gridLock = false;
+	private boolean titleLock = false;
 	private Person currentPerson;
 
 	// Buttons
@@ -186,7 +194,7 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 			notif.show(Page.getCurrent());
 			navigator.navigateTo("home");
 			return false;
-		} 
+		}
 		return true;
 	}
 

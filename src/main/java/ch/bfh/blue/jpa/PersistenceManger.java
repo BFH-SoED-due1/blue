@@ -48,9 +48,6 @@ public class PersistenceManger extends AbstractPersistencManager {
 		AbstractPersistencManager.cleanInstance();
 	}
 
-	public void deletePerson(Person p) {
-		em.remove(p);
-	}
 
 	@Override
 	public Person makePerson(UserData data) {
@@ -79,7 +76,7 @@ public class PersistenceManger extends AbstractPersistencManager {
 		space.addReservation(r);
 		em.getTransaction().commit();
 		return r;
-		
+
 	}
 
 	@Override

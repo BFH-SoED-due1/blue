@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2016 Berner Fachhochschule, Switzerland.
+ *
+ * Project Smart Reservation System.
+ *
+ * Distributable under GPL license. See terms of license at gnu.org.
+ */
 package ch.bfh.blue.UI;
 
 import com.vaadin.navigator.Navigator;
@@ -42,7 +49,7 @@ public class LoginView extends FormLayout implements View  {
 	private final Label header = new Label();
 	private final TextField user = new TextField();
 	private final PasswordField passwd = new PasswordField();
-	Notification notif = new Notification("",Notification.Type.WARNING_MESSAGE);
+	private Notification notif = new Notification("",Notification.Type.WARNING_MESSAGE);
 
 	//Buttons
 	private final Button loginBtn = new Button("Login");

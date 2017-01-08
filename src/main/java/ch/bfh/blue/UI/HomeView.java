@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2016 Berner Fachhochschule, Switzerland.
+ *
+ * Project Smart Reservation System.
+ *
+ * Distributable under GPL license. See terms of license at gnu.org.
+ */
 package ch.bfh.blue.UI;
 
 import com.vaadin.navigator.Navigator;
@@ -7,11 +14,12 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.Label;
+
 import ch.bfh.blue.service.Controller;
 
 /**
  * This is the main page which is also set as default in the navigator
- * 
+ *
  * @author SRS-Team
  *
  */
@@ -19,10 +27,10 @@ import ch.bfh.blue.service.Controller;
 public class HomeView extends FormLayout implements View {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private Navigator navigator;
 	private Controller controller;
 

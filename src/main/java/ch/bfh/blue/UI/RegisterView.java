@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2016 Berner Fachhochschule, Switzerland.
+ *
+ * Project Smart Reservation System.
+ *
+ * Distributable under GPL license. See terms of license at gnu.org.
+ */
 package ch.bfh.blue.UI;
 
 import com.vaadin.navigator.Navigator;
@@ -25,19 +32,19 @@ import ch.bfh.blue.service.Controller;
 public class RegisterView extends FormLayout implements View {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
 	private Navigator navigator;
 	private Controller controller;
-	
+
 	//Constants
 	private static final String REGISTRATION_FAIL_PW_MISSMATCH =
 			"Your Password and your retyped Password don't match, try again.";
 	private static final String REGISTRATION_SUCCESS =
 			"Registration successful, please login.";
-	
+
 	//Layouts which contain components
 	private final HorizontalLayout buttonBar = new HorizontalLayout();
 
@@ -47,7 +54,7 @@ public class RegisterView extends FormLayout implements View {
 	private final TextField email = new TextField();
 	private final PasswordField passwd = new PasswordField();
 	private final PasswordField retypepw = new PasswordField();
-	Notification notif = new Notification("",Notification.Type.WARNING_MESSAGE);
+	private Notification notif = new Notification("",Notification.Type.WARNING_MESSAGE);
 
 	//Buttons
 	private final Button registerBtn = new Button("Register");
@@ -62,7 +69,7 @@ public class RegisterView extends FormLayout implements View {
 	}
 
 	/**
-	 * configure all the settings for the different UI components here 
+	 * configure all the settings for the different UI components here
 	 */
 	private void configureUI() {
 		header.setValue("REGISTER");
@@ -74,10 +81,10 @@ public class RegisterView extends FormLayout implements View {
 		passwd.setInputPrompt("password");
 		retypepw.setCaption("Confirm");
 		retypepw.setInputPrompt("password");
-		
+
 		notif.setDelayMsec(3500);
 	}
-	
+
 	/**
 	 * configure handlers and settings for the buttons here
 	 */
@@ -85,7 +92,7 @@ public class RegisterView extends FormLayout implements View {
 		buttonBar.addComponents(homeBtn, registerBtn);
 		//buttonBar.setMargin(true);
 		buttonBar.setSpacing(true);
-		
+
 		registerBtn.addClickListener(e -> {
 				if(passwd.getValue().equals(retypepw.getValue())){
 					controller.createPerson(email.getValue(), user.getValue(),passwd.getValue());
@@ -97,7 +104,7 @@ public class RegisterView extends FormLayout implements View {
 					notif.setCaption(REGISTRATION_FAIL_PW_MISSMATCH);
 					notif.show(Page.getCurrent());
 				}
-			
+
 		});
 
 		homeBtn.addClickListener(e -> {
@@ -112,5 +119,5 @@ public class RegisterView extends FormLayout implements View {
 	public void enter(ViewChangeEvent event) {
 		navigator = event.getNavigator();
 	}
-	
+
 }

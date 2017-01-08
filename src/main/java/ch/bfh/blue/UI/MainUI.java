@@ -50,7 +50,7 @@ public class MainUI extends UI {
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		
+
 		getSession().setAttribute("user", null);
 
 		/*
@@ -61,6 +61,7 @@ public class MainUI extends UI {
 			public void detach(DetachEvent event) {
 				// during work
 				controller.close();
+
 			}
 		});
 

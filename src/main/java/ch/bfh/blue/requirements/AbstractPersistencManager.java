@@ -50,5 +50,9 @@ public abstract class AbstractPersistencManager {
 		instance = null;
 	}
 
+	// only for JUnit Test
+	public static void setSclass(String Sclass){
+		sClass = Sclass;
+	}
 
 }

@@ -11,23 +11,27 @@ import java.sql.Timestamp;
 
 public interface Reservation {
 
-	public void setSpace(Space s1);
+	public abstract Space getSpace();
 
-	public Space getSpace();
+	public abstract Person getOwner();
 
-	public void setOwner(Person p);
+	public abstract Timestamp getStStamp();
 
-	public Person getOwner();
-	
-	public Timestamp getStStamp();
+	public abstract Timestamp getEnStamp();
 
-	public void setStStamp(Timestamp stStamp);
-	
-	public Timestamp getEnStamp();
+	public abstract String getTitle();
 
-	public void setEnStamp(Timestamp enStamp);
-	
-	public String getTitle();
+	public abstract int getId();
 
-	public void setTitle(String title) ;
+	public abstract void setId(int id);
+
+	public abstract void setOwner(Person p);
+
+	public abstract void setSpace(Space s1);
+
+	public abstract void setStStamp(Timestamp stStamp);
+
+	public abstract void setEnStamp(Timestamp enStamp);
+
+	public abstract void setTitle(String title) ;
 }

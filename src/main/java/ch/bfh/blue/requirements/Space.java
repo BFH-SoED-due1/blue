@@ -11,12 +11,22 @@ import java.util.List;
 
 
 public interface Space {
-	public String getName();
 
-	public List<Reservation> getReservations();
 
-	public void addReservation(Reservation res);
+	public abstract String getName();
 
-	public void removeReservation(Reservation res);
+	public abstract int getSpaceNumber();
+
+	public abstract List<Reservation> getReservations();
+
+	public abstract void setSpaceNumber(int spaceNumber);
+
+	public abstract void setName(String name);
+
+	public abstract void setReservations(List<Reservation> res);
+
+	public abstract void addReservation(Reservation res);
+
+	public abstract void removeReservation(Reservation res);
 
 }

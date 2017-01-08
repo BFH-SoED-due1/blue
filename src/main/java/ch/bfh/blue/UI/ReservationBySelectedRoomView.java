@@ -1,8 +1,16 @@
+/*
+ * Copyright (c) 2016 Berner Fachhochschule, Switzerland.
+ *
+ * Project Smart Reservation System.
+ *
+ * Distributable under GPL license. See terms of license at gnu.org.
+ */
 package ch.bfh.blue.UI;
 
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+
 import com.vaadin.data.util.BeanItemContainer;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
@@ -20,6 +28,7 @@ import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.components.calendar.event.BasicEvent;
+
 import ch.bfh.blue.requirements.Person;
 import ch.bfh.blue.requirements.Reservation;
 import ch.bfh.blue.requirements.Space;
@@ -59,7 +68,7 @@ public class ReservationBySelectedRoomView extends VerticalLayout implements Vie
 	// Labels and Components
 	private final Label heading = new Label();
 	private final Label dateFieldCaption = new Label();
-	Calendar cal = new Calendar();
+	private Calendar cal = new Calendar();
 	private DateField startDateField = new DateField();
 	private DateField endDateField = new DateField();
 	private TextField resTitle = new TextField();
@@ -292,7 +301,7 @@ public class ReservationBySelectedRoomView extends VerticalLayout implements Vie
 			notif.show(Page.getCurrent());
 			navigator.navigateTo("home");
 			return false;
-		} 
+		}
 		return true;
 	}
 

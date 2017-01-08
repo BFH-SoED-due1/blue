@@ -8,6 +8,7 @@
 package ch.bfh.blue.testSRS;
 
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -18,6 +19,7 @@ import ch.bfh.blue.jpa.UserDataImpl;
 import ch.bfh.blue.requirements.Person;
 import ch.bfh.blue.requirements.Reservation;
 public class ReservationPersonTest {
+
 
 	@Test
 	public void testPersonHasReservation() {
@@ -34,5 +36,16 @@ public class ReservationPersonTest {
 		r1.setOwner(m1);
 		assertNotNull(r1.getOwner());
 	}
+
+	@Test
+	public void testRemoveReservation(){
+		Person p = new Mieter(new UserDataImpl("max.muster@musterprovider.ch", "Max", "123"));
+		Reservation r1 = new ReservationImpl(null, p,null,null, new SpaceImpl("s1",1));
+		p.addReservation(r1);
+		p.removeReservation(r1);
+		assertTrue(p.getReservations().isEmpty());
+	}
+
+
 
 }
