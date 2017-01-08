@@ -7,65 +7,93 @@
  */
 package ch.bfh.blue.jpa;
 
+import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import ch.bfh.blue.requirements.Reservation;
 import ch.bfh.blue.requirements.Space;
 
 @Entity
+@NamedQuery(name="SpaceImpl.findAll", query="SELECT s FROM SpaceImpl s")
 public class SpaceImpl implements Space{
 
 	@Id
 	private int spaceNumber;
 	private String name;
-	private boolean booked = false;
 
-	@OneToMany
-	private Set<Reservation> reservations = new HashSet<>();
+
+	@OneToMany(targetEntity=ReservationImpl.class, mappedBy="rentSpace")
+	private List<Reservation> spaceReservations= new ArrayList<>();
+
+	public SpaceImpl() {
+
+	}
 
 	public SpaceImpl(String name,int spaceNumber){
 		this.name=name;
 		this.spaceNumber = spaceNumber;
 	}
 
-	// returns if room is booked
-	@Override
-	public boolean isBooked() {
-		return this.booked;
-	}
-
-	@Override
-	public void booking() {
-		this.booked = true;
-	}
 
 	@Override
 	public String getName() {
 		return this.name;
 	}
 
+
+
 	@Override
-	public Set<Reservation> getReservations() {
-		return Collections.unmodifiableSet(this.reservations);
+	public List<Reservation> getReservations() {
+		return Collections.unmodifiableList(this.spaceReservations);
 	}
+
+
 
 	@Override
 	public void addReservation(Reservation res) {
-		this.reservations.add(res);
+		this.spaceReservations.add(res);
 
 	}
+
 
 	@Override
 	public void removeReservation(Reservation res) {
-		if (this.reservations.contains(res)){
-			this.reservations.remove(res);
+		if (this.spaceReservations.contains(res)){
+			this.spaceReservations.remove(res);
 		}
 
 	}
+
+
+	@Override
+	public String toString(){
+		return name;
+	}
+
+	@Override
+	public int getSpaceNumber() {
+		return spaceNumber;
+	}
+
+	@Override
+	public void setSpaceNumber(int spaceNumber) {
+		this.spaceNumber = spaceNumber;
+	}
+
+	@Override
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public void setReservations(List<Reservation> reservations) {
+		this.spaceReservations = reservations;
+	}
+
 }

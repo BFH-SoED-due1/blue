@@ -23,17 +23,20 @@ public class ReservationSpaceTest {
 	@Test
 	public void testReservationHasSpace() {
 		Space s1 = new SpaceImpl("space1",205);
-		Reservation r1 = new ReservationImpl(null,null, null, s1);
+		Reservation r1 = new ReservationImpl(null, null,null, null, s1);
 		r1.setSpace(s1);
 		assertNotNull(r1.getSpace());
 	}
 
 	@Test
-	public void testSpaceIsBooked() {
+	public void testRemoveReservation(){
 		Space s1 = new SpaceImpl("space1",205);
-		Reservation r1 = new ReservationImpl(null,null, null, s1);
-		r1.setSpace(s1);
-		assertTrue(s1.isBooked());
+		Reservation r1 = new ReservationImpl(null, null,null,null, new SpaceImpl("s1",1));
+		s1.addReservation(r1);
+		s1.removeReservation(r1);
+		assertTrue(s1.getReservations().isEmpty());
 	}
+
+
 
 }

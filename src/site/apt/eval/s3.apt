@@ -3,7 +3,7 @@
 		-------------
 		Eric Dubuis
 		-------------
-		November 18, 2016
+		November 18, 2016; updated December 11, 2016
 
 
 Deliverable 3
@@ -112,6 +112,45 @@ example, in the Iteration Plan document, however.)
 	50 points at most per team member are attributed to this deliverable. Points may
 not be equally distributed among team members. (However, this is the goal.)
 
+*-------------------------------------------+---------------*-----------------*
+| Item										| Max. points	| Points received |
+*-------------------------------------------+---------------*-----------------*
+| Product backlog items at the beginning\	| 		 6		| 		 3		  |
+| COMMENTS:\								| 				| 				  |
+| - Name of items: missing (-3)				| 				| 				  |
+*-------------------------------------------+---------------*-----------------*
+| Sprint backlog items / tasks and their states\ | 	6		| 		 6		  |
+| COMMENTS:\								| 				| 				  |
+| - Name of items: missing (-)				| 				| 				  |
+*-------------------------------------------+---------------*-----------------*
+| Package structure meets SOLID principles, JDepend\ | 8	| 		 4		  |
+| COMMENTS:\								| 				| 				  |
+| - There are cycles (-4) \ 				| 				| 				  |
+*-------------------------------------------+---------------*-----------------*
+| Production classes and interfaces\		| 		 8		| 		 6		  |
+| COMMENTS:\								| 				| 				  |
+| - Bad name: 'PersitenceManger' (-1)\ 		| 				| 				  |
+| - Unused fields (-1) 						| 				| 				  |
+*-------------------------------------------+---------------*-----------------*
+| Working infrastructure with persistence\	| 		 8		| 		 6		  |
+| COMMENTS:\								| 				| 			  	  |
+| - UI / persistence: not linked (-2) 		| 				| 				  |
+*-------------------------------------------+---------------*-----------------*
+| JUnit tests, code coverage\				| 		 8		| 		 4		  |
+| COMMENTS:\								| 				| 			  	  |
+| - Poor 									| 				| 				  |
+*-------------------------------------------+---------------*-----------------*
+| Checkstyle report\						| 		 6		| 		 3		  |
+| COMMENTS:\								| 				| 			  	  |
+| -  										| 				| 				  |
+*-------------------------------------------+---------------*-----------------*
+| Miscellaneous\							| 				| 		 		  |
+| COMMENTS:\								| 				| 			  	  |
+| - None									| 				| 				  |
+*-------------------------------------------+---------------*-----------------*
+| Total										| 		50		| 		32		  |
+*-------------------------------------------+---------------*-----------------*
+Distribution of points for this deliverable.
 
 
 * Deadline

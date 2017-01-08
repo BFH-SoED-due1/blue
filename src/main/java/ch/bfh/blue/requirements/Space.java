@@ -7,20 +7,65 @@
  */
 package ch.bfh.blue.requirements;
 
-import java.util.Set;
+import java.util.List;
 
 public interface Space {
-	public String getName();
 
-	public Set<Reservation> getReservations();
 
-	public void addReservation(Reservation res);
+	/**
+	 * returns the name of this space
+	 *
+	 * @return
+	 */
+	public abstract String getName();
 
-	public void removeReservation(Reservation res);
+	/**
+	 * returns the number of this space
+	 *
+	 * @return
+	 */
+	public abstract int getSpaceNumber();
 
-	public void booking();
+	/**
+	 * returns a list of all reservations of this space
+	 *
+	 * @return
+	 */
+	public abstract List<Reservation> getReservations();
 
-	boolean isBooked();
+	/**
+	 * sets the number for this space
+	 *
+	 * @param spaceNumber
+	 */
+	public abstract void setSpaceNumber(int spaceNumber);
 
+	/**
+	 * sets the name for this space
+	 *
+	 * @param name
+	 */
+	public abstract void setName(String name);
+
+	/**
+	 * adds a list of reservations for this space
+	 *
+	 * @param res
+	 */
+	public abstract void setReservations(List<Reservation> res);
+
+	/**
+	 * adds a single reservation for this space
+	 *
+	 * @param res
+	 */
+	public abstract void addReservation(Reservation res);
+
+	/**
+	 * removes the given reservation from this space
+	 *
+	 * @param res
+	 */
+	public abstract void removeReservation(Reservation res);
 
 }
