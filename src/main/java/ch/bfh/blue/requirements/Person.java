@@ -17,6 +17,14 @@ public interface Person {
 
 	public abstract List<Reservation> getReservations();
 
+	public abstract UserData getData();
+
+	public abstract int getId();
+
+	public abstract void setData(UserData data);
+
+	public abstract void setId(int id);
+
 	public abstract void setReservation(List<Reservation> reservations);
 
 }

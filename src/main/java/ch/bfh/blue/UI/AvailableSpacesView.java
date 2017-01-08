@@ -1,3 +1,10 @@
+/*
+ * Copyright (c) 2016 Berner Fachhochschule, Switzerland.
+ *
+ * Project Smart Reservation System.
+ *
+ * Distributable under GPL license. See terms of license at gnu.org.
+ */
 package ch.bfh.blue.UI;
 
 import java.util.Date;
@@ -30,7 +37,7 @@ import ch.bfh.blue.service.Controller;
  * This view provides the user with the options to either choose a room and get
  * the available time frames for the room or to select a time frame and get all
  * rooms that are free in this time frame
- * 
+ *
  * @author SRS-Team
  *
  */
@@ -212,7 +219,7 @@ public class AvailableSpacesView extends VerticalLayout implements View {
 			notif.show(Page.getCurrent());
 			navigator.navigateTo("home");
 			return false;
-		} 
+		}
 		return true;
 	}
 

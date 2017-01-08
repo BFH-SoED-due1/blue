@@ -33,7 +33,7 @@ public class ReservationImpl implements Reservation {
 	private Person owner;
 
 	private Timestamp stStamp,enStamp;
-	
+
 	private String title;
 
 	public ReservationImpl() {
@@ -56,10 +56,12 @@ public class ReservationImpl implements Reservation {
 
 	}
 
+
 	@Override
 	public Space getSpace() {
 		return rentSpace;
 	}
+
 
 	@Override
 	public void setOwner(Person p) {
@@ -67,43 +69,54 @@ public class ReservationImpl implements Reservation {
 
 	}
 
+
 	@Override
 	public Person getOwner() {
 		return this.owner;
 	}
 
-	public Space getRentSpace() {
-		return rentSpace;
-	}
 
-	public void setRentSpace(Space rentSpace) {
-		this.rentSpace = rentSpace;
-	}
-
+	@Override
 	public Timestamp getStStamp() {
 		return stStamp;
 	}
 
+	@Override
 	public void setStStamp(Timestamp stStamp) {
 		this.stStamp = stStamp;
 	}
 
+	@Override
 	public Timestamp getEnStamp() {
 		return enStamp;
 	}
 
+	@Override
 	public void setEnStamp(Timestamp enStamp) {
 		this.enStamp = enStamp;
 	}
 
 
+	@Override
 	public String getTitle() {
 		return title;
 	}
 
 
+	@Override
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	@Override
+	public int getId() {
+		return id;
+	}
+
+
+	@Override
+	public void setId(int id) {
+		this.id = id;
 	}
 
 
