@@ -14,11 +14,12 @@ public abstract class AbstractPersistencManager {
 
 	private static AbstractPersistencManager instance;
 
+
 	private static String sClass = "ch.bfh.blue.jpa.PersistenceManger";
 
 	/**
 	 * persists the given person in the database
-	 * 
+	 *
 	 * @param data
 	 * @return
 	 */
@@ -26,7 +27,7 @@ public abstract class AbstractPersistencManager {
 
 	/**
 	 * persists the given space in the database
-	 * 
+	 *
 	 * @param name
 	 * @param spaceNumber
 	 * @return
@@ -35,7 +36,7 @@ public abstract class AbstractPersistencManager {
 
 	/**
 	 * persists the given reservation in the database
-	 * 
+	 *
 	 * @param title
 	 * @param p
 	 * @param stStamp
@@ -48,14 +49,14 @@ public abstract class AbstractPersistencManager {
 
 	/**
 	 * returns a list of all spaces from the database
-	 * 
+	 *
 	 * @return
 	 */
 	public abstract List<Space> getAllSpaces();
 
 	/**
 	 * returns a list of all persons from the database
-	 * 
+	 *
 	 * @return
 	 */
 	public abstract List<Person> getAllPersons();
@@ -68,7 +69,7 @@ public abstract class AbstractPersistencManager {
 
 	/**
 	 * checks if the given data is existent in the database
-	 * 
+	 *
 	 * @param userName
 	 * @param password
 	 * @return
@@ -78,7 +79,7 @@ public abstract class AbstractPersistencManager {
 	/**
 	 * returns a list of all the spaces that have no reservation for the given
 	 * time frame
-	 * 
+	 *
 	 * @param stStamp
 	 * @param endStamp
 	 * @return
@@ -88,7 +89,7 @@ public abstract class AbstractPersistencManager {
 	/**
 	 * if the instance is null, creates a new instance of
 	 * AbstractPersistenceManager and returns it
-	 * 
+	 *
 	 * @return
 	 * @throws InstantiationException
 	 * @throws IllegalAccessException

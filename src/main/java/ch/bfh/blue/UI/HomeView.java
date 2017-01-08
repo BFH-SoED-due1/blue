@@ -26,6 +26,7 @@ import ch.bfh.blue.service.Controller;
 
 public class HomeView extends FormLayout implements View {
 
+
 	/**
 	 *
 	 */

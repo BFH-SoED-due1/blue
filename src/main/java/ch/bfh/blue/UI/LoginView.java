@@ -31,6 +31,7 @@ import ch.bfh.blue.service.Controller;
 
 public class LoginView extends FormLayout implements View  {
 
+
 	/**
 	 *
 	 */

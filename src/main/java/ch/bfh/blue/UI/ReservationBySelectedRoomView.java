@@ -44,6 +44,7 @@ import ch.bfh.blue.service.Controller;
 
 public class ReservationBySelectedRoomView extends VerticalLayout implements View {
 
+
 	/**
 	 *
 	 */

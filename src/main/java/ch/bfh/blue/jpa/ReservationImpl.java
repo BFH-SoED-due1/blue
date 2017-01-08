@@ -39,6 +39,7 @@ public class ReservationImpl implements Reservation {
 
 	}
 
+
 	public ReservationImpl(String title, Person p, Timestamp stStamp, Timestamp enStamp, Space space) {
 		this.setTitle(title);
 		this.owner = p;

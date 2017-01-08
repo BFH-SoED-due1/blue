@@ -28,26 +28,32 @@ public class UserDataImpl implements UserData {
 		this.pw = password;
 	}
 
+	@Override
 	public String getUserName() {
 		return this.userName;
 	}
 
+	@Override
 	public String getPw() {
 		return pw;
 	}
 
+	@Override
 	public String getEmail() {
 		return email;
 	}
 
+	@Override
 	public void setEmail(String email) {
 		this.email = email;
 	}
 
+	@Override
 	public void setUserName(String userName) {
 		this.userName = userName;
 	}
 
+	@Override
 	public void setPw(String pw) {
 		this.pw = pw;
 	}

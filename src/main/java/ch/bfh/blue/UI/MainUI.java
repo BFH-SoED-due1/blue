@@ -34,6 +34,7 @@ import ch.bfh.blue.service.Controller;
 @Theme("mytheme")
 public class MainUI extends UI {
 
+
 	private Controller controller;
 
 	@Override

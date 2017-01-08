@@ -38,6 +38,7 @@ import ch.bfh.blue.service.Controller;
 
 public class ReservationBySelectedTimeView extends VerticalLayout implements View {
 
+
 	/**
 	 *
 	 */

@@ -51,7 +51,6 @@ public class Mieter implements Person {
 		this.data = (UserDataImpl) data2;
 	}
 
-
 	@Override
 	public void setReservation(List<Reservation> reservations) {
 		this.personReservations = reservations;

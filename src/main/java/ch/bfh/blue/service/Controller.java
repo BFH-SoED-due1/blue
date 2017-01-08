@@ -18,6 +18,8 @@ import ch.bfh.blue.requirements.Reservation;
 import ch.bfh.blue.requirements.Space;
 import ch.bfh.blue.requirements.UserData;
 
+
+
 public class Controller {
 	private AbstractPersistencManager pm;
 
@@ -27,7 +29,7 @@ public class Controller {
 
 	/**
 	 * checks the login data of the user
-	 * 
+	 *
 	 * @param user
 	 * @param pw
 	 * @return
@@ -38,7 +40,7 @@ public class Controller {
 
 	/**
 	 * returns a list of all spaces that are free in the selected timeframe
-	 * 
+	 *
 	 * @param stDate
 	 * @param enDate
 	 * @return
@@ -51,7 +53,7 @@ public class Controller {
 
 	/**
 	 * checks for a space if it is free for a certain timeframe
-	 * 
+	 *
 	 * @param stDate
 	 * @param enDate
 	 * @param s
@@ -64,7 +66,7 @@ public class Controller {
 
 	/**
 	 * creates a reservation in the database
-	 * 
+	 *
 	 * @param titles
 	 * @param p
 	 * @param stDate
@@ -78,7 +80,7 @@ public class Controller {
 
 	/**
 	 * creates a space in the database
-	 * 
+	 *
 	 * @param name
 	 * @param spaceNumber
 	 * @return
@@ -89,7 +91,7 @@ public class Controller {
 
 	/**
 	 * creates a person in the database
-	 * 
+	 *
 	 * @param email
 	 * @param user
 	 * @param pw
@@ -102,7 +104,7 @@ public class Controller {
 
 	/**
 	 * returns a list of all spaces
-	 * 
+	 *
 	 * @return
 	 */
 	public List<Space> getAllspaces() {

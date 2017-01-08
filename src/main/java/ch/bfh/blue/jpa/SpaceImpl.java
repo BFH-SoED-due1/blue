@@ -91,6 +91,7 @@ public class SpaceImpl implements Space{
 		this.name = name;
 	}
 
+	@Override
 	public void setReservations(List<Reservation> reservations) {
 		this.spaceReservations = reservations;
 	}

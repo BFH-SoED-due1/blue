@@ -44,6 +44,7 @@ import ch.bfh.blue.service.Controller;
 
 public class AvailableSpacesView extends VerticalLayout implements View {
 
+
 	/**
 	 *
 	 */
