@@ -11,7 +11,6 @@ import javax.persistence.Embeddable;
 
 import ch.bfh.blue.requirements.UserData;
 
-
 @Embeddable
 public class UserDataImpl implements UserData {
 
@@ -23,10 +22,10 @@ public class UserDataImpl implements UserData {
 
 	}
 
-	public UserDataImpl(String email,String userName, String password){
-		this.email=email;
-		this.userName=userName;
-		this.pw=password;
+	public UserDataImpl(String email, String userName, String password) {
+		this.email = email;
+		this.userName = userName;
+		this.pw = password;
 	}
 
 	public String getUserName() {
@@ -52,6 +51,5 @@ public class UserDataImpl implements UserData {
 	public void setPw(String pw) {
 		this.pw = pw;
 	}
-
 
 }

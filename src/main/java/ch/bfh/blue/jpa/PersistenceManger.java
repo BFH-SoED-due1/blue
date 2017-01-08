@@ -36,6 +36,9 @@ public class PersistenceManger extends AbstractPersistencManager {
 		init();
 	}
 
+	/**
+	 * initiates this PersistenceManager with the factory 
+	 */
 	public void init() {
 		this.factory = Persistence.createEntityManagerFactory("srs-pu");
 		this.em = factory.createEntityManager();

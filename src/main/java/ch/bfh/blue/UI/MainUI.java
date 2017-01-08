@@ -53,17 +53,17 @@ public class MainUI extends UI {
 
 		getSession().setAttribute("user", null);
 
-		/*
-		 * is called upon closing of the UI do cleanup stuff here
-		 */
-		addDetachListener(new DetachListener() {
-			@Override
-			public void detach(DetachEvent event) {
-				// during work
-				controller.close();
-
-			}
-		});
+		// /*
+		// * is called upon closing of the UI do cleanup stuff here
+		// */
+		// addDetachListener(new DetachListener() {
+		// @Override
+		// public void detach(DetachEvent event) {
+		// // during work
+		// controller.close();
+		//
+		// }
+		// });
 
 		navigator = new Navigator(this, viewLayout);
 		navigator.addView("", new HomeView(controller));

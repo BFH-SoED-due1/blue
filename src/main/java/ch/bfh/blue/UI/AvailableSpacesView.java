@@ -203,12 +203,14 @@ public class AvailableSpacesView extends VerticalLayout implements View {
 		if (grid.getColumn("owner") != null) {
 			grid.removeColumn("owner");
 		}
+		if (grid.getColumn("id") != null) {
+			grid.removeColumn("id");
+		}
 
 	}
 
 	/**
-	 * checks if a user is logged in
-	 * returns true if someone is logged in
+	 * checks if a user is logged in returns true if someone is logged in
 	 * returns false if no one is logged in
 	 */
 	private boolean isLoggedIn() {
@@ -229,11 +231,11 @@ public class AvailableSpacesView extends VerticalLayout implements View {
 	@Override
 	public void enter(ViewChangeEvent event) {
 		navigator = event.getNavigator();
-		if(isLoggedIn()){
-		startDateField.setValue(new Date());
-		endDateField.setValue(addTimeToDate(startDateField.getValue(), java.util.Calendar.HOUR, 1));
-		fillComboBox();
-		refreshGrid();
+		if (isLoggedIn()) {
+			startDateField.setValue(new Date());
+			endDateField.setValue(addTimeToDate(startDateField.getValue(), java.util.Calendar.HOUR, 1));
+			fillComboBox();
+			refreshGrid();
 		}
 	}
 

@@ -66,7 +66,6 @@ public class Mieter implements Person {
 		this.data= data2;
 	}
 
-	// get the set of reservations
 	@Override
 	public UserDataImpl getData() {
 		return this.data;

@@ -18,21 +18,20 @@ import ch.bfh.blue.requirements.Person;
 import ch.bfh.blue.requirements.Reservation;
 import ch.bfh.blue.requirements.Space;
 
-
-
 @Entity
 public class ReservationImpl implements Reservation {
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	private int id;
 
-	@ManyToOne(targetEntity=SpaceImpl.class)
+	@ManyToOne(targetEntity = SpaceImpl.class)
 	private Space rentSpace;
 
-	@ManyToOne(targetEntity=Mieter.class)
+	@ManyToOne(targetEntity = Mieter.class)
 	private Person owner;
 
-	private Timestamp stStamp,enStamp;
+	private Timestamp stStamp, enStamp;
 
 	private String title;
 
@@ -40,12 +39,11 @@ public class ReservationImpl implements Reservation {
 
 	}
 
-
-	public ReservationImpl(String title, Person p,Timestamp stStamp,Timestamp enStamp,Space space){
+	public ReservationImpl(String title, Person p, Timestamp stStamp, Timestamp enStamp, Space space) {
 		this.setTitle(title);
 		this.owner = p;
 		this.rentSpace = space;
-		this.stStamp =stStamp;
+		this.stStamp = stStamp;
 		this.enStamp = enStamp;
 
 	}
@@ -56,12 +54,10 @@ public class ReservationImpl implements Reservation {
 
 	}
 
-
 	@Override
 	public Space getSpace() {
 		return rentSpace;
 	}
-
 
 	@Override
 	public void setOwner(Person p) {
@@ -69,12 +65,10 @@ public class ReservationImpl implements Reservation {
 
 	}
 
-
 	@Override
 	public Person getOwner() {
 		return this.owner;
 	}
-
 
 	@Override
 	public Timestamp getStStamp() {
@@ -96,12 +90,10 @@ public class ReservationImpl implements Reservation {
 		this.enStamp = enStamp;
 	}
 
-
 	@Override
 	public String getTitle() {
 		return title;
 	}
-
 
 	@Override
 	public void setTitle(String title) {
@@ -113,11 +105,9 @@ public class ReservationImpl implements Reservation {
 		return id;
 	}
 
-
 	@Override
 	public void setId(int id) {
 		this.id = id;
 	}
-
 
 }

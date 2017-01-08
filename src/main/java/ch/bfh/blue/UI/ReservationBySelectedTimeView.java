@@ -211,6 +211,9 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 		if (grid.getColumn("reservations") != null) {
 			grid.removeColumn("reservations");
 		}
+		if (grid.getColumn("spaceNumber") != null) {
+			grid.removeColumn("spaceNumber");
+		}
 		grid.deselectAll();
 		reservationBtn.setEnabled(false);
 		startDateLabel.setValue("From: " + startDate);
