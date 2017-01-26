@@ -38,7 +38,6 @@ import ch.bfh.blue.service.Controller;
 
 public class ReservationBySelectedTimeView extends VerticalLayout implements View {
 
-
 	/**
 	 *
 	 */
@@ -58,6 +57,7 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 	private final VerticalLayout dateVL = new VerticalLayout();
 
 	// Labels and Components
+	// TODO Field never used.
 	private String dates = new String();
 	private Date startDate;
 	private Date endDate;
@@ -181,10 +181,8 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 		});
 	}
 
-
 	/**
-	 * checks if a user is logged in
-	 * returns true if someone is logged in
+	 * checks if a user is logged in returns true if someone is logged in
 	 * returns false if no one is logged in
 	 */
 	private boolean isLoggedIn() {
@@ -205,20 +203,20 @@ public class ReservationBySelectedTimeView extends VerticalLayout implements Vie
 	@Override
 	public void enter(ViewChangeEvent event) {
 		navigator = event.getNavigator();
-		if(isLoggedIn()){
-		startDate = (Date) getSession().getAttribute("startDate");
-		endDate = (Date) getSession().getAttribute("endDate");
-		refreshGrid();
-		if (grid.getColumn("reservations") != null) {
-			grid.removeColumn("reservations");
-		}
-		if (grid.getColumn("spaceNumber") != null) {
-			grid.removeColumn("spaceNumber");
-		}
-		grid.deselectAll();
-		reservationBtn.setEnabled(false);
-		startDateLabel.setValue("From: " + startDate);
-		endDateLabel.setValue("To: " + endDate);
+		if (isLoggedIn()) {
+			startDate = (Date) getSession().getAttribute("startDate");
+			endDate = (Date) getSession().getAttribute("endDate");
+			refreshGrid();
+			if (grid.getColumn("reservations") != null) {
+				grid.removeColumn("reservations");
+			}
+			if (grid.getColumn("spaceNumber") != null) {
+				grid.removeColumn("spaceNumber");
+			}
+			grid.deselectAll();
+			reservationBtn.setEnabled(false);
+			startDateLabel.setValue("From: " + startDate);
+			endDateLabel.setValue("To: " + endDate);
 		}
 	}
 
